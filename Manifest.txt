@@ -1,0 +1,6 @@
+History.md
+README.md
+Rakefile
+bin/axiscam
+lib/axis.rb
+spec/axis_spec.rb
