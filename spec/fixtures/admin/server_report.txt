@@ -1,0 +1,1692 @@
+----- Server Report Start -----
+
+Product: AXIS 212 PTZ Network Camera
+Serial No: 00408C7C89CC
+
+----- /usr/share/axis-release/variables -----
+
+RELEASE="4.49"
+BUILD="8"
+BUILDTIME="Jun 18 2009 13:28"
+PART="36065"
+FS_TYPE_part_rootfs="cramfs"
+FS_TYPE_part_rwfs="jffs2"
+MOPTS_part_rwfs="-o noauto"
+
+----- System information -----
+
+Linux 2.6.27 #1 Thu Jun 18 13:24:15 CEST 2009 armv4tl
+
+----- /etc/release -----
+
+JFFSID="id-36065-4.49-8"
+
+----- uptime -----
+
+ 19:23:47 up 8 days,  7:13, load average: 0.00, 0.00, 0.08
+
+----- /var/log/messages -----
+
+<INFO    > Apr 28 11:10:46 CHANGE-ME syslogd 1.4.1: restart.
+<INFO    > Apr 28 11:10:47 CHANGE-ME /bin/imaged[105]: imaged starting
+<INFO    > Apr 28 11:10:47 CHANGE-ME ipchanged[109]: Start.
+<INFO    > Apr 28 11:10:48 CHANGE-ME root: /etc/ipchanged.script: New IP address for lo is 127.0.0.1.
+<INFO    > Apr 28 11:10:48 CHANGE-ME root: Interface lo ignored
+<INFO    > Apr 28 11:10:48 CHANGE-ME root: /etc/ipchanged.script: New IP address for lo is ::1.
+<INFO    > Apr 28 11:10:49 CHANGE-ME root: Interface lo ignored
+<INFO    > Apr 28 11:10:50 CHANGE-ME root: /etc/ipchanged.script: New IP address for eth0 is 192.168.0.90.
+<INFO    > Apr 28 11:10:53 CHANGE-ME time_handler[264]: Starting.
+<INFO    > Apr 28 11:10:53 CHANGE-ME time_handler[264]: Reading configure file.
+<INFO    > Apr 28 11:10:53 CHANGE-ME time_handler[264]: Did not adjust time.
+<INFO    > Apr 28 11:10:54 CHANGE-ME parhand[282]: Starting.
+<INFO    > Apr 28 11:10:56 CHANGE-ME time_handler[264]: Exiting.
+<INFO    > Apr 28 11:10:57 CHANGE-ME time_handler[355]: Starting.
+<INFO    > Apr 28 11:10:57 CHANGE-ME time_handler[355]: Reading configure file.
+<INFO    > Apr 28 11:10:57 CHANGE-ME time_handler[355]: NTP time adjusted 802908 usec.
+<INFO    > Apr 28 11:10:59 CHANGE-ME parhand[291]: Starting server.
+<INFO    > Apr 28 11:11:00 CHANGE-ME parhand[291]: Updated configuration file /etc/sysconfig/notify.conf.
+<INFO    > Apr 28 11:11:00 CHANGE-ME saudiod[367]: Starting.
+<INFO    > Apr 28 11:11:00 CHANGE-ME saudiod[375]: Reconfigure.
+<INFO    > Apr 28 11:11:01 CHANGE-ME syslogd 1.4.1: restart.
+<INFO    > Apr 28 11:11:01 CHANGE-ME time_handler[355]: Reading configure file.
+<INFO    > Apr 28 11:11:01 CHANGE-ME time_handler[355]: NTP small time adjustment -2570 usec.
+<INFO    > Apr 28 11:11:01 CHANGE-ME viewer[405]: Starting.
+<INFO    > Apr 28 11:11:02 CHANGE-ME root: /etc/ipchanged.script: New IP address for eth0 is fe80::240:8cff:fe7c:89cc.
+<INFO    > Apr 28 11:11:02 CHANGE-ME recorder[425]: Starting.
+<INFO    > Apr 28 11:11:02 CHANGE-ME zeroconf-ip[229]: claimed 169.254.215.101
+<INFO    > Apr 28 11:11:04 CHANGE-ME media_server[487]: Starting.
+<INFO    > Apr 28 11:11:04 CHANGE-ME syslogd 1.4.1: restart.
+<INFO    > Apr 28 11:11:04 CHANGE-ME time_handler[355]: Reading configure file.
+<INFO    > Apr 28 11:11:04 CHANGE-ME time_handler[355]: NTP small time adjustment -4127 usec.
+<INFO    > Apr 28 11:11:05 CHANGE-ME root: /etc/ipchanged.script: Removed IP address fe80::240:8cff:fe7c:89cc from eth0.
+<INFO    > Apr 28 11:11:05 CHANGE-ME rtspd[519]: Starting.
+<INFO    > Apr 28 11:11:05 CHANGE-ME dptzd[537]: Starting.
+<INFO    > Apr 28 11:11:06 CHANGE-ME root: /etc/ipchanged.script: Removed IP address 192.168.0.90 from eth0.
+<INFO    > Apr 28 11:11:06 CHANGE-ME utask[557]: utask $Revision: 1.86 $
+<INFO    > Apr 28 11:11:06 CHANGE-ME utask[561]: loading config.
+<INFO    > Apr 28 11:11:06 CHANGE-ME utask[561]: /etc/user.task.list loaded, 0 tasks.
+<INFO    > Apr 28 11:11:07 CHANGE-ME root: /etc/ipchanged.script: New IP address for eth0 is 10.5.2.88.
+<INFO    > Apr 28 11:11:07 CHANGE-ME parhand[291]: Updated configuration file /etc/sysconfig/notify.conf.
+<INFO    > Apr 28 11:11:09 CHANGE-ME /usr/sbin/snmpd[677]: Starting.
+<INFO    > Apr 28 11:11:09 CHANGE-ME syslogd 1.4.1: restart.
+<INFO    > Apr 28 11:11:09 CHANGE-ME time_handler[355]: Reading configure file.
+<INFO    > Apr 28 11:11:09 CHANGE-ME time_handler[355]: NTP small time adjustment 3210 usec.
+<INFO    > Apr 28 11:11:10 CHANGE-ME media_server[490]: Reconfigure.
+<CRITICAL> Apr 28 11:11:10 CHANGE-ME dptzd[543]: fdipc_server_socket failed: /var/run/motion/requestsocket
+<CRITICAL> Apr 28 11:11:10 CHANGE-ME dptzd[543]: Could not connect to socket: /var/run/motion/requestsocket
+<INFO    > Apr 28 11:11:11 CHANGE-ME Enhanced Motion Detection[722]: Starting Enhanced Motion Detection
+<INFO    > Apr 28 11:11:11 CHANGE-ME root: /etc/ipchanged.script: New IP address for eth0 is 169.254.215.101.
+<INFO    > Apr 28 11:11:12 CHANGE-ME utask[561]: loading config.
+<INFO    > Apr 28 11:11:12 CHANGE-ME utask[561]: /etc/user.task.list loaded, 0 tasks.
+<INFO    > Apr 28 11:11:12 CHANGE-ME /bin/ssid[764]: Starting.
+<INFO    > Apr 28 11:11:12 CHANGE-ME /bin/ssid[764]: /usr/html/
+<INFO    > Apr 28 11:11:13 CHANGE-ME Language Handler[777]: Starting.
+<INFO    > Apr 28 11:11:13 CHANGE-ME Language Handler[777]: Waiting for connections.
+<INFO    > Apr 28 11:11:13 CHANGE-ME syslogd 1.4.1: restart.
+<INFO    > Apr 28 11:11:14 CHANGE-ME time_handler[355]: Reading configure file.
+<INFO    > Apr 28 11:11:14 CHANGE-ME time_handler[355]: NTP small time adjustment -1447 usec.
+<INFO    > Apr 28 11:11:14 CHANGE-ME media_server[490]: Reconfigure.
+<INFO    > Apr 28 12:11:25 CHANGE-ME time_handler[355]: NTP small time adjustment 90002 usec.
+<INFO    > Apr 28 13:11:36 CHANGE-ME time_handler[355]: NTP small time adjustment 81946 usec.
+<INFO    > Apr 28 14:11:46 CHANGE-ME time_handler[355]: NTP small time adjustment 81948 usec.
+<INFO    > Apr 28 15:07:51 CHANGE-ME Language Handler[777]: Got connection, client fd: 5.
+<INFO    > Apr 28 15:08:49 CHANGE-ME parhand[291]: Updated configuration file /etc/sysconfig/time_handler.conf.
+<INFO    > Apr 28 15:08:49 CHANGE-ME parhand[291]: Updated configuration file /etc/sysconfig/systime.conf.
+<INFO    > Apr 28 15:08:49 CHANGE-ME parhand[291]: Updated configuration file /etc/snmp/snmpd.conf.
+<INFO    > Apr 28 15:08:49 CHANGE-ME time_handler[355]: Reading configure file.
+<INFO    > Apr 28 16:08:49 CHANGE-ME time_handler[355]: NTP time adjusted -694889914 usec.
+<INFO    > Apr 28 16:09:10 CHANGE-ME ipchanged[111]: Terminated.
+<INFO    > Apr 28 16:09:17 CHANGE-ME Language Handler[777]: Exiting.
+<INFO    > Apr 28 16:09:18 CHANGE-ME /bin/ssid[764]: Exit on signal 15
+<INFO    > Apr 28 16:09:22 CHANGE-ME utask[561]: killed!
+<INFO    > Apr 28 16:09:23 CHANGE-ME dptzd[543]: Exiting.
+<INFO    > Apr 28 16:09:24 CHANGE-ME rtspd[525]: exit on signal 15
+<INFO    > Apr 28 16:09:24 CHANGE-ME recorder[473]: Caught termination signal, shutting down 
+<INFO    > Apr 28 16:09:25 CHANGE-ME viewer[440]: Exiting on signal 15.
+<INFO    > Apr 28 16:09:25 CHANGE-ME viewer[439]: Exiting on signal 15.
+<INFO    > Apr 28 16:09:25 CHANGE-ME viewer[438]: Exiting on signal 15.
+<INFO    > Apr 28 16:09:25 CHANGE-ME viewer[405]: Exiting on signal 15.
+<INFO    > Apr 28 16:09:25 CHANGE-ME saudiod[375]: Exiting.
+<INFO    > Apr 28 16:09:26 CHANGE-ME parhand[291]: Exit on signal 15
+<INFO    > Apr 28 16:09:26 CHANGE-ME time_handler[355]: Exiting.
+<INFO    > Apr 28 16:09:28 CHANGE-ME exiting on signal 15
+<INFO    > Apr 28 16:09:29 CHANGE-ME syslogd 1.4.1: restart.
+<INFO    > Apr 28 16:09:29 CHANGE-ME /bin/imaged[1128]: imaged starting
+<INFO    > Apr 28 16:09:30 CHANGE-ME ipchanged[1132]: Start.
+<INFO    > Apr 28 16:09:31 CHANGE-ME time_handler[1159]: Starting.
+<INFO    > Apr 28 16:09:31 CHANGE-ME time_handler[1159]: Reading configure file.
+<INFO    > Apr 28 16:09:31 CHANGE-ME time_handler[1159]: NTP small time adjustment -3064 usec.
+<INFO    > Apr 28 16:09:32 CHANGE-ME parhand[1169]: Starting.
+<INFO    > Apr 28 16:09:36 CHANGE-ME parhand[1171]: Starting server.
+<INFO    > Apr 28 16:09:36 CHANGE-ME saudiod[1186]: Starting.
+<INFO    > Apr 28 16:09:36 CHANGE-ME saudiod[1188]: Reconfigure.
+<INFO    > Apr 28 16:09:36 CHANGE-ME viewer[1201]: Starting.
+<INFO    > Apr 28 16:09:37 CHANGE-ME recorder[1213]: Starting.
+<INFO    > Apr 28 16:09:37 CHANGE-ME media_server[1245]: Starting.
+<INFO    > Apr 28 16:09:38 CHANGE-ME rtspd[1265]: Starting.
+<INFO    > Apr 28 16:09:38 CHANGE-ME dptzd[1271]: Starting.
+<INFO    > Apr 28 16:09:39 CHANGE-ME utask[1277]: utask $Revision: 1.86 $
+<INFO    > Apr 28 16:09:39 CHANGE-ME utask[1279]: loading config.
+<INFO    > Apr 28 16:09:39 CHANGE-ME utask[1279]: /etc/user.task.list loaded, 0 tasks.
+<INFO    > Apr 28 16:09:40 CHANGE-ME /usr/sbin/snmpd[1358]: Starting.
+<INFO    > Apr 28 16:09:41 CHANGE-ME Enhanced Motion Detection[1379]: Starting Enhanced Motion Detection
+<INFO    > Apr 28 16:09:41 CHANGE-ME utask[1279]: loading config.
+<INFO    > Apr 28 16:09:41 CHANGE-ME utask[1279]: /etc/user.task.list loaded, 0 tasks.
+<INFO    > Apr 28 16:09:42 CHANGE-ME /bin/ssid[1401]: Starting.
+<INFO    > Apr 28 16:09:42 CHANGE-ME /bin/ssid[1401]: /usr/html/
+<INFO    > Apr 28 16:09:42 CHANGE-ME Language Handler[1410]: Starting.
+<INFO    > Apr 28 16:09:42 CHANGE-ME Language Handler[1410]: Waiting for connections.
+<INFO    > Apr 28 17:09:42 CHANGE-ME time_handler[1159]: NTP small time adjustment 88671 usec.
+<INFO    > Apr 28 18:09:53 CHANGE-ME time_handler[1159]: NTP small time adjustment 84763 usec.
+<INFO    > Apr 28 19:10:04 CHANGE-ME time_handler[1159]: NTP small time adjustment 84237 usec.
+<INFO    > Apr 28 20:10:15 CHANGE-ME time_handler[1159]: NTP small time adjustment 83510 usec.
+<INFO    > Apr 28 21:10:26 CHANGE-ME time_handler[1159]: NTP small time adjustment 85650 usec.
+<INFO    > Apr 28 22:10:37 CHANGE-ME time_handler[1159]: NTP small time adjustment 84189 usec.
+<INFO    > Apr 28 23:10:48 CHANGE-ME time_handler[1159]: NTP small time adjustment 83714 usec.
+<INFO    > Apr 29 00:10:59 CHANGE-ME time_handler[1159]: NTP small time adjustment 82968 usec.
+<INFO    > Apr 29 01:11:10 CHANGE-ME time_handler[1159]: NTP small time adjustment 85520 usec.
+<INFO    > Apr 29 02:11:21 CHANGE-ME time_handler[1159]: NTP small time adjustment 82677 usec.
+<INFO    > Apr 29 03:11:32 CHANGE-ME time_handler[1159]: NTP small time adjustment 83262 usec.
+<INFO    > Apr 29 04:11:43 CHANGE-ME time_handler[1159]: NTP small time adjustment 87926 usec.
+<INFO    > Apr 29 05:11:54 CHANGE-ME time_handler[1159]: NTP small time adjustment 79786 usec.
+<INFO    > Apr 29 06:12:05 CHANGE-ME time_handler[1159]: NTP small time adjustment 82831 usec.
+<INFO    > Apr 29 07:12:16 CHANGE-ME time_handler[1159]: NTP small time adjustment 82828 usec.
+<INFO    > Apr 29 08:12:27 CHANGE-ME time_handler[1159]: NTP small time adjustment 83794 usec.
+<INFO    > Apr 29 09:12:38 CHANGE-ME time_handler[1159]: NTP small time adjustment 83343 usec.
+<INFO    > Apr 29 10:12:49 CHANGE-ME time_handler[1159]: NTP small time adjustment 83695 usec.
+<INFO    > Apr 29 11:13:00 CHANGE-ME time_handler[1159]: NTP small time adjustment 85471 usec.
+<INFO    > Apr 29 12:13:11 CHANGE-ME time_handler[1159]: NTP small time adjustment 83957 usec.
+<INFO    > Apr 29 13:13:21 CHANGE-ME time_handler[1159]: NTP small time adjustment 87513 usec.
+<INFO    > Apr 29 14:13:32 CHANGE-ME time_handler[1159]: NTP small time adjustment 87859 usec.
+<INFO    > Apr 29 15:13:43 CHANGE-ME time_handler[1159]: NTP small time adjustment 87471 usec.
+<INFO    > Apr 29 15:16:48 CHANGE-ME Language Handler[1410]: Got connection, client fd: 5.
+<INFO    > Apr 29 16:13:54 CHANGE-ME time_handler[1159]: NTP small time adjustment 87896 usec.
+<INFO    > Apr 29 17:14:05 CHANGE-ME time_handler[1159]: NTP small time adjustment 86235 usec.
+<INFO    > Apr 29 18:14:16 CHANGE-ME time_handler[1159]: NTP small time adjustment 85624 usec.
+<INFO    > Apr 29 19:14:27 CHANGE-ME time_handler[1159]: NTP small time adjustment 86431 usec.
+<INFO    > Apr 29 19:55:42 CHANGE-ME viewer[1219]: Session timed out due to client inactivity.
+<INFO    > Apr 29 20:14:38 CHANGE-ME time_handler[1159]: NTP small time adjustment 86175 usec.
+<INFO    > Apr 29 21:14:49 CHANGE-ME time_handler[1159]: NTP small time adjustment 85775 usec.
+<INFO    > Apr 29 22:15:00 CHANGE-ME time_handler[1159]: NTP small time adjustment 83672 usec.
+<INFO    > Apr 29 23:15:11 CHANGE-ME time_handler[1159]: NTP small time adjustment 84683 usec.
+<INFO    > Apr 30 00:15:22 CHANGE-ME time_handler[1159]: NTP small time adjustment 84406 usec.
+<INFO    > Apr 30 01:15:33 CHANGE-ME time_handler[1159]: NTP small time adjustment 83962 usec.
+<INFO    > Apr 30 02:15:44 CHANGE-ME time_handler[1159]: NTP small time adjustment 83609 usec.
+<INFO    > Apr 30 03:15:55 CHANGE-ME time_handler[1159]: NTP small time adjustment 84089 usec.
+<INFO    > Apr 30 04:16:06 CHANGE-ME time_handler[1159]: NTP small time adjustment 84262 usec.
+<INFO    > Apr 30 05:16:17 CHANGE-ME time_handler[1159]: NTP small time adjustment 83695 usec.
+<INFO    > Apr 30 06:16:28 CHANGE-ME time_handler[1159]: NTP small time adjustment 84013 usec.
+<INFO    > Apr 30 07:16:39 CHANGE-ME time_handler[1159]: NTP small time adjustment 83590 usec.
+<INFO    > Apr 30 08:16:50 CHANGE-ME time_handler[1159]: NTP small time adjustment 83454 usec.
+<INFO    > Apr 30 09:17:01 CHANGE-ME time_handler[1159]: NTP small time adjustment 83823 usec.
+<INFO    > Apr 30 10:17:12 CHANGE-ME time_handler[1159]: NTP small time adjustment 83666 usec.
+<INFO    > Apr 30 11:17:23 CHANGE-ME time_handler[1159]: NTP small time adjustment 82653 usec.
+<INFO    > Apr 30 12:17:34 CHANGE-ME time_handler[1159]: NTP small time adjustment 82568 usec.
+<INFO    > Apr 30 13:17:45 CHANGE-ME time_handler[1159]: NTP small time adjustment 84033 usec.
+<INFO    > Apr 30 14:17:55 CHANGE-ME time_handler[1159]: NTP small time adjustment 84107 usec.
+<INFO    > Apr 30 15:18:06 CHANGE-ME time_handler[1159]: NTP small time adjustment 84207 usec.
+<INFO    > Apr 30 16:18:17 CHANGE-ME time_handler[1159]: NTP small time adjustment 84868 usec.
+<INFO    > Apr 30 17:18:28 CHANGE-ME time_handler[1159]: NTP small time adjustment 85308 usec.
+<INFO    > Apr 30 18:18:39 CHANGE-ME time_handler[1159]: NTP small time adjustment 85006 usec.
+<INFO    > Apr 30 19:18:50 CHANGE-ME time_handler[1159]: NTP small time adjustment 85676 usec.
+<INFO    > Apr 30 20:19:01 CHANGE-ME time_handler[1159]: NTP small time adjustment 85268 usec.
+<INFO    > Apr 30 21:19:12 CHANGE-ME time_handler[1159]: NTP small time adjustment 85650 usec.
+<INFO    > Apr 30 22:19:23 CHANGE-ME time_handler[1159]: NTP small time adjustment 84847 usec.
+<INFO    > Apr 30 23:19:34 CHANGE-ME time_handler[1159]: NTP small time adjustment 85011 usec.
+<INFO    > May  1 00:19:45 CHANGE-ME time_handler[1159]: NTP small time adjustment 84682 usec.
+<INFO    > May  1 01:19:56 CHANGE-ME time_handler[1159]: NTP small time adjustment 84421 usec.
+<INFO    > May  1 02:20:07 CHANGE-ME time_handler[1159]: NTP small time adjustment 84607 usec.
+<INFO    > May  1 03:20:18 CHANGE-ME time_handler[1159]: NTP small time adjustment 85064 usec.
+<INFO    > May  1 04:20:29 CHANGE-ME time_handler[1159]: NTP small time adjustment 84046 usec.
+<INFO    > May  1 05:20:40 CHANGE-ME time_handler[1159]: NTP small time adjustment 84079 usec.
+<INFO    > May  1 06:20:51 CHANGE-ME time_handler[1159]: NTP small time adjustment 84167 usec.
+<INFO    > May  1 07:21:02 CHANGE-ME time_handler[1159]: NTP small time adjustment 84250 usec.
+<INFO    > May  1 08:21:13 CHANGE-ME time_handler[1159]: NTP small time adjustment 85788 usec.
+<INFO    > May  1 09:21:24 CHANGE-ME time_handler[1159]: NTP small time adjustment 83265 usec.
+<INFO    > May  1 10:21:35 CHANGE-ME time_handler[1159]: NTP small time adjustment 83966 usec.
+<INFO    > May  1 11:21:46 CHANGE-ME time_handler[1159]: NTP small time adjustment 84374 usec.
+<INFO    > May  1 12:21:56 CHANGE-ME time_handler[1159]: NTP small time adjustment 84435 usec.
+<INFO    > May  1 13:22:07 CHANGE-ME time_handler[1159]: NTP small time adjustment 84268 usec.
+<INFO    > May  1 14:22:18 CHANGE-ME time_handler[1159]: NTP small time adjustment 84948 usec.
+<INFO    > May  1 15:22:29 CHANGE-ME time_handler[1159]: NTP small time adjustment 85007 usec.
+<INFO    > May  1 16:22:40 CHANGE-ME time_handler[1159]: NTP small time adjustment 85615 usec.
+<INFO    > May  1 17:22:51 CHANGE-ME time_handler[1159]: NTP small time adjustment 86248 usec.
+<INFO    > May  1 18:23:02 CHANGE-ME time_handler[1159]: NTP small time adjustment 85951 usec.
+<INFO    > May  1 19:23:13 CHANGE-ME time_handler[1159]: NTP small time adjustment 86306 usec.
+<INFO    > May  1 20:23:24 CHANGE-ME time_handler[1159]: NTP small time adjustment 86049 usec.
+<INFO    > May  1 21:23:35 CHANGE-ME time_handler[1159]: NTP small time adjustment 85587 usec.
+<INFO    > May  1 22:23:46 CHANGE-ME time_handler[1159]: NTP small time adjustment 86221 usec.
+<INFO    > May  1 23:23:57 CHANGE-ME time_handler[1159]: NTP small time adjustment 85672 usec.
+<INFO    > May  2 00:24:08 CHANGE-ME time_handler[1159]: NTP small time adjustment 85687 usec.
+<INFO    > May  2 01:24:19 CHANGE-ME time_handler[1159]: NTP small time adjustment 85931 usec.
+<INFO    > May  2 02:24:30 CHANGE-ME time_handler[1159]: NTP small time adjustment 86255 usec.
+<INFO    > May  2 03:24:41 CHANGE-ME time_handler[1159]: NTP small time adjustment 85462 usec.
+<INFO    > May  2 04:24:52 CHANGE-ME time_handler[1159]: NTP small time adjustment 86254 usec.
+<INFO    > May  2 05:25:03 CHANGE-ME time_handler[1159]: NTP small time adjustment 85872 usec.
+<INFO    > May  2 06:25:14 CHANGE-ME time_handler[1159]: NTP small time adjustment 84670 usec.
+<INFO    > May  2 07:25:25 CHANGE-ME time_handler[1159]: NTP small time adjustment 84328 usec.
+<INFO    > May  2 08:25:36 CHANGE-ME time_handler[1159]: NTP small time adjustment 83923 usec.
+<INFO    > May  2 09:25:47 CHANGE-ME time_handler[1159]: NTP small time adjustment 84201 usec.
+<INFO    > May  2 10:25:57 CHANGE-ME time_handler[1159]: NTP small time adjustment 84358 usec.
+<INFO    > May  2 11:26:08 CHANGE-ME time_handler[1159]: NTP small time adjustment 84578 usec.
+<INFO    > May  2 12:26:19 CHANGE-ME time_handler[1159]: NTP small time adjustment 83646 usec.
+<INFO    > May  2 13:26:30 CHANGE-ME time_handler[1159]: NTP small time adjustment 83934 usec.
+<INFO    > May  2 14:26:41 CHANGE-ME time_handler[1159]: NTP small time adjustment 84496 usec.
+<INFO    > May  2 15:26:52 CHANGE-ME time_handler[1159]: NTP small time adjustment 79940 usec.
+<INFO    > May  2 16:27:03 CHANGE-ME time_handler[1159]: NTP small time adjustment 89605 usec.
+<INFO    > May  2 17:27:14 CHANGE-ME time_handler[1159]: NTP small time adjustment 87658 usec.
+<INFO    > May  2 18:27:25 CHANGE-ME time_handler[1159]: NTP small time adjustment 86735 usec.
+<INFO    > May  2 19:27:36 CHANGE-ME time_handler[1159]: NTP small time adjustment 88217 usec.
+<INFO    > May  2 20:27:47 CHANGE-ME time_handler[1159]: NTP small time adjustment 87799 usec.
+<INFO    > May  2 21:27:58 CHANGE-ME time_handler[1159]: NTP small time adjustment 86972 usec.
+<INFO    > May  2 22:28:09 CHANGE-ME time_handler[1159]: NTP small time adjustment 87212 usec.
+<INFO    > May  2 23:28:20 CHANGE-ME time_handler[1159]: NTP small time adjustment 87122 usec.
+<INFO    > May  3 00:28:31 CHANGE-ME time_handler[1159]: NTP small time adjustment 86472 usec.
+<INFO    > May  3 01:28:42 CHANGE-ME time_handler[1159]: NTP small time adjustment 87369 usec.
+<INFO    > May  3 02:28:53 CHANGE-ME time_handler[1159]: NTP small time adjustment 87007 usec.
+<INFO    > May  3 03:29:04 CHANGE-ME time_handler[1159]: NTP small time adjustment 90065 usec.
+<INFO    > May  3 04:29:15 CHANGE-ME time_handler[1159]: NTP small time adjustment 83217 usec.
+<INFO    > May  3 05:29:26 CHANGE-ME time_handler[1159]: NTP small time adjustment 85761 usec.
+<INFO    > May  3 06:29:37 CHANGE-ME time_handler[1159]: NTP small time adjustment 85429 usec.
+<INFO    > May  3 07:29:48 CHANGE-ME time_handler[1159]: NTP small time adjustment 86814 usec.
+<INFO    > May  3 08:29:59 CHANGE-ME time_handler[1159]: NTP small time adjustment 86456 usec.
+<INFO    > May  3 09:30:10 CHANGE-ME time_handler[1159]: NTP small time adjustment 86179 usec.
+<INFO    > May  3 10:30:21 CHANGE-ME time_handler[1159]: NTP small time adjustment 90042 usec.
+<INFO    > May  3 10:38:43 CHANGE-ME parhand[1171]: Updated configuration file /etc/dynamic/event.conf.
+<INFO    > May  3 10:38:43 CHANGE-ME parhand[1171]: Updated configuration file /etc/snmp/snmpd.conf.
+<INFO    > May  3 10:38:44 CHANGE-ME utask[1279]: loading config.
+<INFO    > May  3 10:38:44 CHANGE-ME utask[1279]: /etc/user.task.list loaded, 0 tasks.
+<INFO    > May  3 10:38:55 CHANGE-ME ipchanged[1134]: Terminated.
+<INFO    > May  3 10:39:02 CHANGE-ME Language Handler[1410]: Exiting.
+<INFO    > May  3 10:39:04 CHANGE-ME /bin/ssid[1401]: Exit on signal 15
+<INFO    > May  3 10:39:09 CHANGE-ME utask[1279]: killed!
+<INFO    > May  3 10:39:10 CHANGE-ME dptzd[1274]: Exiting.
+<INFO    > May  3 10:39:12 CHANGE-ME rtspd[1267]: exit on signal 15
+<INFO    > May  3 10:39:13 CHANGE-ME recorder[1240]: Caught termination signal, shutting down 
+<INFO    > May  3 10:39:13 CHANGE-ME viewer[1231]: Exiting on signal 15.
+<INFO    > May  3 10:39:13 CHANGE-ME viewer[1230]: Exiting on signal 15.
+<INFO    > May  3 10:39:13 CHANGE-ME viewer[1229]: Exiting on signal 15.
+<INFO    > May  3 10:39:13 CHANGE-ME viewer[1227]: Exiting on signal 15.
+<INFO    > May  3 10:39:13 CHANGE-ME viewer[1225]: Exiting on signal 15.
+<INFO    > May  3 10:39:13 CHANGE-ME viewer[1223]: Exiting on signal 15.
+<INFO    > May  3 10:39:13 CHANGE-ME viewer[1201]: Exiting on signal 15.
+<INFO    > May  3 10:39:14 CHANGE-ME saudiod[1188]: Exiting.
+<INFO    > May  3 10:39:14 CHANGE-ME parhand[1171]: Exit on signal 15
+<INFO    > May  3 10:39:15 CHANGE-ME time_handler[1159]: Exiting.
+<INFO    > May  3 10:39:16 CHANGE-ME exiting on signal 15
+<INFO    > May  3 10:39:17 CHANGE-ME syslogd 1.4.1: restart.
+<INFO    > May  3 10:39:18 CHANGE-ME /bin/imaged[2516]: imaged starting
+<INFO    > May  3 10:39:18 CHANGE-ME ipchanged[2520]: Start.
+<INFO    > May  3 10:39:19 CHANGE-ME time_handler[2547]: Starting.
+<INFO    > May  3 10:39:19 CHANGE-ME time_handler[2547]: Reading configure file.
+<INFO    > May  3 10:39:19 CHANGE-ME time_handler[2547]: NTP small time adjustment 3687 usec.
+<INFO    > May  3 10:39:20 CHANGE-ME parhand[2557]: Starting.
+<INFO    > May  3 10:39:24 CHANGE-ME parhand[2559]: Starting server.
+<INFO    > May  3 10:39:24 CHANGE-ME saudiod[2574]: Starting.
+<INFO    > May  3 10:39:24 CHANGE-ME saudiod[2577]: Reconfigure.
+<INFO    > May  3 10:39:25 CHANGE-ME viewer[2589]: Starting.
+<INFO    > May  3 10:39:25 CHANGE-ME recorder[2601]: Starting.
+<INFO    > May  3 10:39:26 CHANGE-ME media_server[2633]: Starting.
+<INFO    > May  3 10:39:26 CHANGE-ME rtspd[2653]: Starting.
+<INFO    > May  3 10:39:27 CHANGE-ME dptzd[2659]: Starting.
+<INFO    > May  3 10:39:27 CHANGE-ME utask[2665]: utask $Revision: 1.86 $
+<INFO    > May  3 10:39:27 CHANGE-ME utask[2667]: loading config.
+<INFO    > May  3 10:39:27 CHANGE-ME utask[2667]: /etc/user.task.list loaded, 0 tasks.
+<INFO    > May  3 10:39:28 CHANGE-ME /usr/sbin/snmpd[2748]: Starting.
+<INFO    > May  3 10:39:29 CHANGE-ME Enhanced Motion Detection[2769]: Starting Enhanced Motion Detection
+<INFO    > May  3 10:39:30 CHANGE-ME utask[2667]: loading config.
+<INFO    > May  3 10:39:30 CHANGE-ME utask[2667]: /etc/user.task.list loaded, 0 tasks.
+<INFO    > May  3 10:39:31 CHANGE-ME /bin/ssid[2792]: Starting.
+<INFO    > May  3 10:39:31 CHANGE-ME /bin/ssid[2792]: /usr/html/
+<INFO    > May  3 10:39:31 CHANGE-ME Language Handler[2800]: Starting.
+<INFO    > May  3 10:39:31 CHANGE-ME Language Handler[2800]: Waiting for connections.
+<INFO    > May  3 11:39:30 CHANGE-ME time_handler[2547]: NTP small time adjustment 91788 usec.
+<INFO    > May  3 11:44:25 CHANGE-ME viewer[2613]: Session timed out due to client inactivity.
+<INFO    > May  3 12:39:41 CHANGE-ME time_handler[2547]: NTP small time adjustment 85770 usec.
+<INFO    > May  3 13:39:52 CHANGE-ME time_handler[2547]: NTP small time adjustment 84807 usec.
+<INFO    > May  3 14:40:03 CHANGE-ME time_handler[2547]: NTP small time adjustment 107457 usec.
+<INFO    > May  3 15:40:14 CHANGE-ME time_handler[2547]: NTP small time adjustment 64707 usec.
+<INFO    > May  3 16:40:25 CHANGE-ME time_handler[2547]: NTP small time adjustment 85384 usec.
+<INFO    > May  3 17:40:36 CHANGE-ME time_handler[2547]: NTP small time adjustment 83951 usec.
+<INFO    > May  3 18:40:47 CHANGE-ME time_handler[2547]: NTP small time adjustment 84254 usec.
+<INFO    > May  3 19:40:58 CHANGE-ME time_handler[2547]: NTP small time adjustment 86474 usec.
+<INFO    > May  3 20:41:09 CHANGE-ME time_handler[2547]: NTP small time adjustment 90359 usec.
+<INFO    > May  3 21:41:20 CHANGE-ME time_handler[2547]: NTP small time adjustment 80602 usec.
+<INFO    > May  3 22:41:31 CHANGE-ME time_handler[2547]: NTP small time adjustment 84602 usec.
+<INFO    > May  3 23:41:42 CHANGE-ME time_handler[2547]: NTP small time adjustment 85238 usec.
+<INFO    > May  4 00:41:53 CHANGE-ME time_handler[2547]: NTP small time adjustment 87005 usec.
+<INFO    > May  4 01:42:04 CHANGE-ME time_handler[2547]: NTP small time adjustment 82862 usec.
+<INFO    > May  4 02:42:15 CHANGE-ME time_handler[2547]: NTP small time adjustment 84370 usec.
+<INFO    > May  4 03:42:26 CHANGE-ME time_handler[2547]: NTP small time adjustment 84656 usec.
+<INFO    > May  4 04:42:37 CHANGE-ME time_handler[2547]: NTP small time adjustment 84561 usec.
+<INFO    > May  4 05:42:48 CHANGE-ME time_handler[2547]: NTP small time adjustment 81260 usec.
+<INFO    > May  4 06:42:59 CHANGE-ME time_handler[2547]: NTP small time adjustment 86960 usec.
+<INFO    > May  4 07:43:10 CHANGE-ME time_handler[2547]: NTP small time adjustment 83599 usec.
+<INFO    > May  4 08:43:21 CHANGE-ME time_handler[2547]: NTP small time adjustment 83863 usec.
+<INFO    > May  4 09:43:31 CHANGE-ME time_handler[2547]: NTP small time adjustment 83856 usec.
+<INFO    > May  4 10:43:42 CHANGE-ME time_handler[2547]: NTP small time adjustment 83995 usec.
+<INFO    > May  4 11:43:53 CHANGE-ME time_handler[2547]: NTP small time adjustment 84379 usec.
+<INFO    > May  4 12:44:04 CHANGE-ME time_handler[2547]: NTP small time adjustment 83810 usec.
+<INFO    > May  4 13:44:15 CHANGE-ME time_handler[2547]: NTP small time adjustment 83662 usec.
+<INFO    > May  4 14:44:26 CHANGE-ME time_handler[2547]: NTP small time adjustment 83989 usec.
+<INFO    > May  4 15:44:37 CHANGE-ME time_handler[2547]: NTP small time adjustment 83911 usec.
+<INFO    > May  4 16:44:48 CHANGE-ME time_handler[2547]: NTP small time adjustment 83467 usec.
+<INFO    > May  4 17:44:59 CHANGE-ME time_handler[2547]: NTP small time adjustment 82756 usec.
+<INFO    > May  4 18:45:10 CHANGE-ME time_handler[2547]: NTP small time adjustment 83671 usec.
+<INFO    > May  4 19:45:21 CHANGE-ME time_handler[2547]: NTP small time adjustment 84939 usec.
+<INFO    > May  4 20:45:32 CHANGE-ME time_handler[2547]: NTP small time adjustment 84621 usec.
+<INFO    > May  4 21:45:43 CHANGE-ME time_handler[2547]: NTP small time adjustment 85191 usec.
+<INFO    > May  4 22:45:54 CHANGE-ME time_handler[2547]: NTP small time adjustment 84482 usec.
+<INFO    > May  4 23:46:05 CHANGE-ME time_handler[2547]: NTP small time adjustment 85393 usec.
+<INFO    > May  5 00:46:16 CHANGE-ME time_handler[2547]: NTP small time adjustment 84242 usec.
+<INFO    > May  5 01:46:27 CHANGE-ME time_handler[2547]: NTP small time adjustment 84795 usec.
+<INFO    > May  5 02:46:38 CHANGE-ME time_handler[2547]: NTP small time adjustment 84953 usec.
+<INFO    > May  5 03:46:49 CHANGE-ME time_handler[2547]: NTP small time adjustment 89193 usec.
+<INFO    > May  5 04:47:00 CHANGE-ME time_handler[2547]: NTP small time adjustment 79746 usec.
+<INFO    > May  5 05:47:11 CHANGE-ME time_handler[2547]: NTP small time adjustment 85163 usec.
+<INFO    > May  5 06:47:22 CHANGE-ME time_handler[2547]: NTP small time adjustment 84407 usec.
+<INFO    > May  5 07:47:32 CHANGE-ME time_handler[2547]: NTP small time adjustment 83894 usec.
+<INFO    > May  5 08:47:43 CHANGE-ME time_handler[2547]: NTP small time adjustment 83472 usec.
+<INFO    > May  5 09:47:54 CHANGE-ME time_handler[2547]: NTP small time adjustment 85298 usec.
+<INFO    > May  5 10:48:05 CHANGE-ME time_handler[2547]: NTP small time adjustment 84212 usec.
+<INFO    > May  5 11:48:16 CHANGE-ME time_handler[2547]: NTP small time adjustment 83531 usec.
+<INFO    > May  5 12:48:27 CHANGE-ME time_handler[2547]: NTP small time adjustment 84218 usec.
+<INFO    > May  5 13:24:30 CHANGE-ME Language Handler[2800]: Got connection, client fd: 5.
+<INFO    > May  5 13:48:38 CHANGE-ME time_handler[2547]: NTP small time adjustment 83760 usec.
+<INFO    > May  5 14:48:49 CHANGE-ME time_handler[2547]: NTP small time adjustment 84685 usec.
+<INFO    > May  5 15:49:00 CHANGE-ME time_handler[2547]: NTP small time adjustment 84878 usec.
+<INFO    > May  5 16:49:11 CHANGE-ME time_handler[2547]: NTP small time adjustment 85880 usec.
+<INFO    > May  5 17:49:22 CHANGE-ME time_handler[2547]: NTP small time adjustment 85806 usec.
+<INFO    > May  5 18:49:33 CHANGE-ME time_handler[2547]: NTP small time adjustment 84972 usec.
+<INFO    > May  5 19:49:44 CHANGE-ME time_handler[2547]: NTP small time adjustment 85317 usec.
+<INFO    > May  5 20:49:55 CHANGE-ME time_handler[2547]: NTP small time adjustment 84912 usec.
+<INFO    > May  5 21:50:06 CHANGE-ME time_handler[2547]: NTP small time adjustment 85750 usec.
+<INFO    > May  5 22:50:17 CHANGE-ME time_handler[2547]: NTP small time adjustment 85635 usec.
+<INFO    > May  5 23:50:28 CHANGE-ME time_handler[2547]: NTP small time adjustment 84266 usec.
+<INFO    > May  6 00:50:39 CHANGE-ME time_handler[2547]: NTP small time adjustment 86108 usec.
+<INFO    > May  6 01:50:50 CHANGE-ME time_handler[2547]: NTP small time adjustment 87001 usec.
+<INFO    > May  6 02:51:01 CHANGE-ME time_handler[2547]: NTP small time adjustment 87485 usec.
+<INFO    > May  6 03:51:12 CHANGE-ME time_handler[2547]: NTP small time adjustment 85032 usec.
+<INFO    > May  6 04:51:23 CHANGE-ME time_handler[2547]: NTP small time adjustment 85635 usec.
+<INFO    > May  6 05:51:34 CHANGE-ME time_handler[2547]: NTP small time adjustment 85837 usec.
+<INFO    > May  6 06:51:45 CHANGE-ME time_handler[2547]: NTP small time adjustment 85501 usec.
+<INFO    > May  6 07:51:56 CHANGE-ME time_handler[2547]: NTP small time adjustment 84933 usec.
+<INFO    > May  6 08:52:07 CHANGE-ME time_handler[2547]: NTP small time adjustment 85412 usec.
+<INFO    > May  6 09:52:18 CHANGE-ME time_handler[2547]: NTP small time adjustment 84305 usec.
+<INFO    > May  6 10:47:36 CHANGE-ME viewer[2605]: Session timed out due to client inactivity.
+<INFO    > May  6 10:52:28 CHANGE-ME time_handler[2547]: NTP small time adjustment 86370 usec.
+<INFO    > May  6 11:52:39 CHANGE-ME time_handler[2547]: NTP small time adjustment 84068 usec.
+<INFO    > May  6 12:52:50 CHANGE-ME time_handler[2547]: NTP small time adjustment 83339 usec.
+<INFO    > May  6 13:53:01 CHANGE-ME time_handler[2547]: NTP small time adjustment 85198 usec.
+<INFO    > May  6 14:53:12 CHANGE-ME time_handler[2547]: NTP small time adjustment 83990 usec.
+<INFO    > May  6 15:53:23 CHANGE-ME time_handler[2547]: NTP small time adjustment 83776 usec.
+<INFO    > May  6 16:53:34 CHANGE-ME time_handler[2547]: NTP small time adjustment 84026 usec.
+<INFO    > May  6 17:53:45 CHANGE-ME time_handler[2547]: NTP small time adjustment 83254 usec.
+<INFO    > May  6 18:53:56 CHANGE-ME time_handler[2547]: NTP small time adjustment 83594 usec.
+
+----- Kernel -----
+
+Linux version 2.6.27 (bogw@eater-1) (gcc version 3.4.4 (Axis release 1.20050730.1)) #1 Thu Jun 18 13:24:15 CEST 2009
+CPU: ARM/ANOTO CT200(wt)sid [43023000] revision 0 (ARMv4T), cr=0000b18f
+Machine: Argus
+console [ttyS0] enabled
+Memory policy: ECC disabled, Data cache writeback
+Reserving space for 6291456 bytes of VRAM
+On node 0 totalpages: 8192
+free_area_init_node: node 0, pgdat c01d023c, node_mem_map c07e7000
+  DMA zone: 1016 pages, LIFO batch:0
+  Normal zone: 7112 pages, LIFO batch:0
+CPU0: D VIVT write-through cache
+CPU0: I cache: 2048 bytes, associativity 1, 16 byte lines, 128 sets
+CPU0: D cache: 2048 bytes, associativity 1, 16 byte lines, 128 sets
+Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 8128
+Kernel command line: root=/dev/mtdblock3 mem=32M init=/linuxrc panic=1
+PID hash table entries: 128 (order: 7, 512 bytes)
+Dentry cache hash table entries: 4096 (order: 2, 16384 bytes)
+Inode-cache hash table entries: 2048 (order: 1, 8192 bytes)
+Memory: 32MB = 32MB total
+Memory: 24396KB available (1696K code, 148K data, 72K init)
+Calibrating delay loop... 74.75 BogoMIPS (lpj=373760)
+Mount-cache hash table entries: 512
+CPU: Testing write buffer coherency: failed, enabling work-around
+net_namespace: 760 bytes
+NET: Registered protocol family 16
+NET: Registered protocol family 2
+IP route cache hash table entries: 1024 (order: 0, 4096 bytes)
+TCP established hash table entries: 1024 (order: 1, 8192 bytes)
+TCP bind hash table entries: 1024 (order: 0, 4096 bytes)
+TCP: Hash tables configured (established 1024 bind 1024)
+TCP reno registered
+NET: Registered protocol family 1
+prof_running=1
+Setting up DMA...
+Argus serial port driver initializing
+ttyS0 at 0xe40b0000 is a builtin UART0
+ttyS1 at 0xe40c0000 is a builtin UART1
+Argus3 ethernet driver v2.0 (c) 2004-2007 Axis Communications AB
+PHY MII address 0
+Argus SSI driver v3.0
+Argus GPIO driver
+I2C driver v1.0, (c) 2006 Axis Communications AB
+PCF8563 Real-Time Clock Driver, $Revision: 1.9 $
+NetWinder Floating Point Emulator V0.97 (double precision)
+JFFS2 version 2.2. (NAND) Â© 2001-2006 Red Hat, Inc.
+msgmni has been set to 47
+io scheduler noop registered (default)
+Netfilter messages via NETLINK v0.30.
+ip_tables: (C) 2000-2006 Netfilter Core Team
+TCP cubic registered
+NET: Registered protocol family 10
+ip6_tables: (C) 2000-2006 Netfilter Core Team
+IPv6 over IPv4 tunneling driver
+NET: Registered protocol family 17
+axisflashmap: nand_boot: 43
+Axis flash mapping: 2000000 at e2000000
+trying to cfi_probe...
+Axis flash: Found 1 x16 devices at 0x0 in 16-bit bank
+Axis flash: Found an alias at 0x800000 for the chip at 0x0
+Axis flash: Found an alias at 0x1000000 for the chip at 0x0
+Axis flash: Found an alias at 0x1800000 for the chip at 0x0
+ Amd/Fujitsu Extended Query Table at 0x0040
+Axis flash: CFI does not contain boot bank location. Assuming top.
+number of CFI chips: 1
+cfi_cmdset_0002: Disabling erase-suspend-program due to code brokenness.
+axisflashmap: Found a valid partition table at 0xc01d0dac-0xc01d0df8.
+axisflashmap: Adding partition for overlapping root file system image
+Creating 1 MTD partitions on "Axis flash":
+0x00000000-0x00010000 : "part0"
+Creating 1 MTD partitions on "Axis flash":
+0x00010000-0x00600000 : "part1"
+Creating 1 MTD partitions on "Axis flash":
+0x00600000-0x00800000 : "part2"
+Creating 1 MTD partitions on "Axis flash":
+0x000f2e74-0x005cce74 : "romfs"
+VFS: Mounted root (cramfs filesystem) readonly.
+Freeing init memory: 72K
+camera: module license 'unspecified' taints kernel.
+Argus3 camera driver v3.1
+Bitmap YUV size 15360
+VRAM manager: 8 yuv blocks of 491520, 10 data blocks of 131072
+Copying ave irq0 handler (0xb90 bytes) to 0xc1dfe000
+Initiating AVE firmware
+Sensor version is 0x1621
+eth0: changed MAC to 00:40:8C:7C:89:CC
+  Setting up ethernet DMA..
+
+----- Access log -----
+
+
+# Axis Parameter list, Fri May  6 19:23:47 2011
+
+
+[Audio]
+DuplexMode               = "half"
+ForwardOnPost            = "no"
+MaxListeners             = "20"
+ConnectedClients         = "0"
+ConnectedPostClients     = "0"
+ReceiverBuffer           = "120"
+ReceiverTimeout          = "1000"
+NbrOfConfigs             = "1"
+DSCP                     = "0"
+
+
+[Audio.A0]
+Enabled                  = "no"
+HTTPMessageType          = "singlepart"
+Name                     = ""
+Source                   = "0"
+AlarmLevel               = "50"
+AlarmResolution          = "50"
+AlarmLowLimit            = "10"
+AlarmHighLimit           = "6500"
+
+
+[AudioSource]
+NbrOfSources             = "1"
+
+
+[AudioSource.A0]
+Name                     = "Audio"
+AudioEncoding            = "g711"
+InputType                = "mic"
+MicrophonePower          = "yes"
+InputGain                = "0"
+OutputGain               = "0"
+SampleRate               = "8000"
+BitRate                  = "64000"
+
+
+[Bandwidth]
+Limit                    = "0"
+
+
+[Brand]
+Brand                    = "AXIS"
+ProdFullName             = "AXIS 212 PTZ Network Camera"
+ProdShortName            = "AXIS 212 PTZ"
+ProdNbr                  = "212 PTZ"
+ProdType                 = "Network Camera"
+WebURL                   = "http://www.axis.com/"
+
+
+[Event.E0]
+Name                     = "Movement"
+Type                     = "T"
+Enabled                  = "no"
+Active                   = "no"
+Priority                 = "1"
+Image                    = "0"
+HWInputs                 = "x"
+SWInput                  = "M0:/"
+Weekdays                 = "1111111"
+Starttime                = "00:00"
+Duration                 = "24:00"
+MinimumTriggerInterval   = "00:00:00"
+MinimumTriggerTimePeriod = "00:00:00"
+ImageURLSettingsEnabled  = "no"
+ImageURLSettings         = ""
+IncludePreTrigger        = "yes"
+PreTriggerSize           = "9"
+PreTriggerInterval       = "333.3333333333333"
+PreTriggerIntervalUnit   = "s"
+PreTriggerUnit           = "s"
+IncludePostTrigger       = "yes"
+PostTriggerSize          = "9"
+PostTriggerInterval      = "333.3333333333333"
+PostTriggerIntervalUnit  = "s"
+PostTriggerUnit          = "s"
+IncludeBestEffort        = "no"
+BestEffortInterval       = "0"
+BestEffortDuration       = "0"
+BestEffortIntervalUnit   = "s"
+BestEffortDurationUnit   = "s"
+CreateFolder             = "#i"
+FileName                 = "event-%Y-%m-%d-%H:%M:%S-#s.jpg"
+Suffix                   = ""
+FileFormat               = "jpg"
+IncludeAudio             = "no"
+MaxSequenceNumber        = "0"
+MPEGPreTriggerDuration   = "5"
+MPEGPostTriggerDuration  = "2"
+
+
+[Event.E0.Actions.A0]
+Type                     = "U"
+Protocol                 = "FTP"
+Order                    = "0"
+Server                   = "F0"
+Server2                  = ""
+
+
+[Event.E0.Actions.A1]
+Type                     = "N"
+Protocol                 = "TCP"
+Order                    = "0"
+Server                   = "T0"
+Message                  = "Motion detected in #n"
+Frequency                = "1"
+FrequencyUnit            = "m"
+Continuous               = "y"
+
+
+[EventServers.FTP.F0]
+Name                     = "CameraFTP"
+Address                  = "camera-ftp.laika.com"
+Login                    = "axis"
+Password                 = "*****"
+UploadPath               = ""
+Port                     = "21"
+Passive                  = "no"
+UseTempFile              = "no"
+
+
+[EventServers.TCP.T0]
+Name                     = "Mon"
+Address                  = "mon.laika.com"
+Port                     = "2947"
+
+
+[HTTPS]
+Enabled                  = "no"
+Port                     = "443"
+
+
+[Image]
+ReferrersEnabled         = "no"
+Referrers                = ""
+MaxViewers               = "20"
+NbrOfConfigs             = "1"
+OverlayPath              = "/etc/overlays/axis(128x44).ovl"
+DateFormat               = "YYYY-MM-DD"
+OwnDateFormat            = "%F"
+OwnDateFormatEnabled     = "no"
+TimeFormat               = "24"
+OwnTimeFormat            = "%T"
+OwnTimeFormatEnabled     = "no"
+TimeResolution           = "1"
+TriggerDataEnabled       = "no"
+
+
+[Image.I0]
+Name                     = ""
+Source                   = "0"
+
+
+[Image.I0.Appearance]
+Resolution               = "640x480"
+Compression              = "30"
+ColorEnabled             = "yes"
+
+
+[Image.I0.MPEG]
+ConfigHeaderInterval     = "5"
+ICount                   = "1"
+PCount                   = "29"
+ResyncMarkerEnabled      = "yes"
+UserDataEnabled          = "no"
+CyclicIBlockRefresh      = "no"
+
+
+[Image.I0.Overlay]
+Enabled                  = "no"
+XPos                     = "0"
+YPos                     = "0"
+
+
+[Image.I0.RateControl]
+Mode                     = "vbr"
+Priority                 = "framerate"
+TargetBitrate            = "0"
+MaxFPS                   = "30"
+MinFPS                   = "1"
+MaxCompression           = "100"
+MinCompression           = "0"
+MaxBitrate               = "3000"
+
+
+[Image.I0.SizeControl]
+MaxFrameSize             = "0"
+DiffFrameSize            = "0"
+
+
+[Image.I0.Stream]
+Duration                 = "0"
+NbrOfFrames              = "0"
+FPS                      = "0"
+
+
+[Image.I0.Text]
+DateEnabled              = "no"
+ClockEnabled             = "no"
+TextEnabled              = "no"
+String                   = ""
+Position                 = "top"
+
+
+[Image.I0.TriggerData]
+IOEnabled                = "yes"
+AudioEnabled             = "yes"
+MotionDetectionEnabled   = "yes"
+MotionLevelEnabled       = "no"
+UserTriggers             = ""
+
+
+[ImageSource]
+NbrOfSources             = "1"
+
+
+[ImageSource.I0]
+Name                     = "Camera"
+
+
+[ImageSource.I0.Sensor]
+WhiteBalance             = "auto"
+Exposure                 = "auto"
+ExposureWindow           = "auto"
+ExposurePriority         = "50"
+Brightness               = "50"
+ColorLevel               = "50"
+Sharpness                = "0"
+BlacklevelCorrection     = "0"
+MaxExposureTime          = "2000000"
+MaxGain                  = "100"
+NoiseColorReduction      = "100"
+
+
+[Input]
+NbrOfInputs              = "1"
+
+
+[Input.I0]
+Name                     = "Input 1"
+Trig                     = "closed"
+
+
+[Layout]
+ViewerIE                 = "activex"
+ViewerOther              = "spush"
+SetupLinkEnabled         = "yes"
+SnapshotEnabled          = "yes"
+PlainConfigEnabled       = "no"
+ShowAMCToolbar           = "yes"
+AMCRecordMedia           = "1"
+Axis                     = "no"
+OwnHomePageEnabled       = "no"
+OwnHomePagePath          = "dummy"
+OwnBGColorEnabled        = "no"
+OwnBGColor               = "white"
+OwnTextColorEnabled      = "no"
+OwnTextColor             = "black"
+MPEGInstallationEnabled  = "yes"
+AACInstallationEnabled   = "yes"
+ShowRelCrossEnabled      = "no"
+DefaultJoystickMode      = "no"
+DefaultVideoFormat       = "mjpeg"
+ShowVideoFormatDropDown  = "yes"
+
+
+[Layout.Banner]
+Source                   = "none"
+Path                     = "dummy"
+Address                  = "http://"
+Link                     = "none"
+LinkURL                  = "http://"
+
+
+[Layout.BGPicture]
+Source                   = "none"
+Path                     = "dummy"
+Address                  = "http://"
+
+
+[Layout.CustomLink.C0]
+Enabled                  = "no"
+Name                     = "Custom link 1"
+URL                      = "http://"
+Usage                    = "cgi"
+
+
+[Layout.CustomLink.C1]
+Enabled                  = "no"
+Name                     = "Custom link 2"
+URL                      = "http://"
+Usage                    = "cgi"
+
+
+[Layout.CustomLink.C2]
+Enabled                  = "no"
+Name                     = "Custom link 3"
+URL                      = "http://"
+Usage                    = "cgi"
+
+
+[Layout.CustomLink.C3]
+Enabled                  = "no"
+Name                     = "Custom link 4"
+URL                      = "http://"
+Usage                    = "cgi"
+
+
+[Layout.Description]
+Source                   = "default"
+String                   = "Description text below image"
+
+
+[Layout.Logo]
+Source                   = "none"
+Path                     = "dummy"
+Address                  = "http://"
+Link                     = "default"
+LinkURL                  = "http://"
+
+
+[Layout.Title]
+Source                   = "default"
+String                   = "Title text above image"
+
+
+[Layout.Trigger.T0]
+Enabled                  = "no"
+
+
+[Log.Access]
+MaxSize                  = "40000"
+Critical                 = "detailed"
+Warning                  = "detailed"
+Informational            = "off"
+
+
+[Log.System]
+MaxSize                  = "40000"
+Critical                 = "on"
+Warning                  = "on"
+Informational            = "on"
+
+
+[MailLogd]
+ToEmail                  = ""
+LogSendLevel             = "0"
+
+
+[Motion.M0]
+Name                     = "cam"
+ImageSource              = "0"
+Left                     = "0"
+Right                    = "9999"
+Top                      = "0"
+Bottom                   = "9999"
+WindowType               = "include"
+Sensitivity              = "86"
+History                  = "32"
+ObjectSize               = "6"
+
+
+[Network]
+DomainName               = ""
+Enabled                  = "yes"
+BootProto                = "dhcp"
+IPAddress                = "192.168.0.90"
+SubnetMask               = "255.255.255.0"
+Broadcast                = "192.168.0.255"
+DefaultRouter            = "192.168.0.1"
+HostName                 = "CHANGE-ME"
+DNSServer1               = "0.0.0.0"
+DNSServer2               = "0.0.0.0"
+Media                    = "auto"
+Autoneg                  = "normal"
+tcpECN                   = "1"
+
+
+[Network.ARPPingIPAddress]
+Enabled                  = "no"
+
+
+[Network.AxisNS]
+Enabled                  = "no"
+LockButton               = "no"
+UpdatePeriod             = "0"
+CheckPeriod              = "10"
+ServerList               = "www1.axiscam.net,193.13.178.252"
+ServerPath               = "reg_cam.php"
+ServerLink               = "www.axiscam.net"
+CheckIPAddress           = "0.0.0.0"
+CheckTTL                 = "0"
+
+
+[Network.Bonjour]
+Enabled                  = "no"
+FriendlyName             = "AXIS 212 PTZ - 00408C7C89CC"
+
+
+[Network.DHCP]
+StoreIPAddresseth0       = "no"
+IPCheckEnabled           = "yes"
+VendorClass              = "AXIS,Network Camera,212 PTZ,4.49"
+Fqdn                     = ""
+Timeout                  = "0"
+Retries                  = "20"
+
+
+[Network.DNSUpdate]
+Enabled                  = "no"
+DNSName                  = ""
+TTL                      = "30"
+
+
+[Network.eth0]
+MACAddress               = "00:40:8C:7C:89:CC"
+IPAddress                = "10.5.2.88"
+SubnetMask               = "255.255.252.0"
+Broadcast                = "10.5.3.255"
+
+
+[Network.eth0.IPv6]
+IPAddresses              = ""
+
+
+[Network.Filter]
+Enabled                  = "no"
+
+
+[Network.Filter.Input]
+Policy                   = "allow"
+AcceptAddresses          = ""
+
+
+[Network.Filter.Log]
+Enabled                  = "yes"
+
+
+[Network.FTP]
+Enabled                  = "no"
+
+
+[Network.HTTP]
+AuthenticationPolicy     = "basic"
+AuthenticationPolicySet  = "yes"
+AuthenticationWithQop    = "no"
+
+
+[Network.Interface.I0]
+SystemDevice             = "eth0"
+
+
+[Network.Interface.I0.dot1x]
+Enabled                  = "no"
+EAPOLVersion             = "1"
+Status                   = "Stopped"
+
+
+[Network.Interface.I0.dot1x.EAPTLS]
+Identity                 = "xxx"
+PrivateKeyPassword       = "*****"
+
+
+[Network.Interface.I0.Link]
+MTU                      = "1500"
+
+
+[Network.IPv6]
+Enabled                  = "no"
+AcceptRA                 = "yes"
+DHCPv6                   = "auto"
+IPAddress                = ""
+DefaultRouter            = ""
+
+
+[Network.QoS.Class1]
+Desc                     = "AxisLiveVideo"
+DSCP                     = "0"
+
+
+[Network.QoS.Class2]
+Desc                     = "AxisLiveAudio"
+DSCP                     = "0"
+
+
+[Network.QoS.Class3]
+Desc                     = "AxisEventAlarm"
+DSCP                     = "0"
+
+
+[Network.QoS.Class4]
+Desc                     = "AxisManagement"
+DSCP                     = "0"
+
+
+[Network.Resolver]
+ObtainFromDHCP           = "yes"
+Search                   = "bennett.laika.com pettygrove.laika.com laika.com mdc.laika.com"
+NameServer1              = "10.5.1.12"
+NameServer2              = "10.5.1.13"
+NameServerList           = "10.5.1.12 10.5.1.13 "
+
+
+[Network.Routing]
+DefaultRouter            = "10.5.1.1"
+
+
+[Network.Routing.IPv6]
+DefaultRouter            = ""
+
+
+[Network.RTP]
+NbrOfRTPGroups           = "1"
+StartPort                = "50000"
+EndPort                  = "50999"
+VideoDSCP                = "0"
+AudioDSCP                = "0"
+
+
+[Network.RTP.R0]
+AlwaysMulticast          = "no"
+VideoAddress             = "239.196.137.204"
+VideoPort                = "0"
+AudioAddress             = "239.196.137.51"
+AudioPort                = "0"
+TTL                      = "5"
+
+
+[Network.RTSP]
+Enabled                  = "yes"
+Port                     = "554"
+Timeout                  = "60"
+ProtViewer               = "password"
+axadmin                  = "http"
+axoper                   = "http"
+axview                   = "http"
+
+
+[Network.UPnP]
+Enabled                  = "no"
+FriendlyName             = "AXIS 212 PTZ - 00408C7C89CC"
+
+
+[Network.UPnP.NATTraversal]
+Enabled                  = "no"
+Router                   = ""
+ExternalIPAddress        = ""
+Active                   = "no"
+MinPort                  = "32768"
+MaxPort                  = "65535"
+
+
+[Network.VolatileHostName]
+ObtainFromDHCP           = "no"
+HostName                 = "CHANGE-ME"
+
+
+[Network.ZeroConf]
+Enabled                  = "yes"
+IPAddress                = "169.254.215.101"
+SubnetMask               = "255.255.0.0"
+
+
+[Notify]
+AtBoot                   = "no"
+TextType                 = "simple"
+TextField                = "Your text here"
+KnownIP                  = "10.5.2.88"
+KnownIPV6                = ""
+
+
+[Notify.FTP]
+Enabled                  = "no"
+HostName                 = ""
+UserName                 = ""
+Password                 = "*****"
+UploadPath               = ""
+PassiveMode              = "no"
+Port                     = "21"
+
+
+[Notify.HTTP]
+Enabled                  = "no"
+URL                      = "http://"
+Custom                   = ""
+UserName                 = ""
+Password                 = "*****"
+Proxy                    = ""
+ProxyPort                = ""
+ProxyUser                = ""
+ProxyPass                = "*****"
+
+
+[Notify.SMTP]
+Enabled                  = "no"
+ToEmail                  = ""
+FromEmail                = "it-camera-alerts@lists.laika.com"
+Subject                  = ""
+
+
+[Output]
+NbrOfOutputs             = "1"
+
+
+[Output.O0]
+Name                     = "Output 1"
+Active                   = "closed"
+Button                   = "none"
+PulseTime                = "0"
+
+
+[Properties.API.HTTP]
+Version                  = "2"
+AdminPath                = "/operator/basic.shtml"
+
+
+[Properties.Audio]
+Audio                    = "yes"
+Format                   = "g711,g726,aac"
+
+
+[Properties.Firmware]
+BuildNumber              = "8"
+BuildDate                = "Jun 18 2009 13:28"
+Version                  = "4.49"
+
+
+[Properties.GuardTour]
+GuardTour                = "yes"
+
+
+[Properties.HTTPS]
+HTTPS                    = "yes"
+
+
+[Properties.Image]
+Rotation                 = "0"
+Resolution               = "640x480,480x360,320x240,240x180,176x144,160x120"
+Format                   = "jpeg,mjpeg,mpeg4,bitmap"
+
+
+[Properties.Motion]
+Motion                   = "yes"
+MaxNbrOfWindows          = "10"
+
+
+[Properties.PTZ]
+PTZ                      = "yes"
+DigitalPTZ               = "yes"
+
+
+[Properties.System]
+Language                 = "English"
+HardwareID               = "14D"
+SerialNumber             = "00408C7C89CC"
+
+
+[PTZ]
+NbrOfCameras             = "1"
+CameraDefault            = "1"
+BoaProtPTZOperator       = "password"
+
+
+[PTZ.Limit.L1]
+MinPan                   = "-70"
+MaxPan                   = "70"
+MinTilt                  = "-52"
+MaxTilt                  = "52"
+MinZoom                  = "0"
+MaxZoom                  = "9999"
+
+
+[PTZ.Preset.P0]
+Name                     = ""
+ImageSource              = "0"
+HomePosition             = "-1"
+
+
+[PTZ.Support.S1]
+AbsolutePan              = "true"
+RelativePan              = "true"
+AbsoluteTilt             = "true"
+RelativeTilt             = "true"
+AbsoluteZoom             = "true"
+RelativeZoom             = "true"
+DigitalZoom              = "true"
+AbsoluteFocus            = "false"
+RelativeFocus            = "false"
+AutoFocus                = "false"
+AbsoluteIris             = "false"
+RelativeIris             = "false"
+AutoIris                 = "false"
+ContinuousPan            = "true"
+ContinuousTilt           = "true"
+ContinuousZoom           = "true"
+ContinuousFocus          = "false"
+ContinuousIris           = "false"
+Auxiliary                = "false"
+ServerPreset             = "true"
+DevicePreset             = "false"
+SpeedCtl                 = "false"
+ProportionalSpeed        = "true"
+JoyStickEmulation        = "true"
+IrCutFilter              = "false"
+AutoIrCutFilter          = "false"
+BackLight                = "false"
+ActionNotification       = "false"
+
+
+[PTZ.Various.V1]
+PanEnabled               = "true"
+TiltEnabled              = "true"
+ZoomEnabled              = "true"
+MotionWhileZoomed        = "false"
+ProportionalSpeedEnabled = "true"
+MaxProportionalSpeed     = "200"
+HomePresetSet            = "true"
+ReturnToOverview         = "300"
+
+
+[Sequence.S0]
+Name                     = ""
+NbrOfSources             = "0"
+RandomEnabled            = "no"
+
+
+[SMTP]
+MailServer1              = "mail.laika.com"
+MailServer2              = ""
+MailServerPort1          = "25"
+MailServerPort2          = "25"
+FromEmail                = "it-camera-alerts@lists.laika.com"
+
+
+[SMTP.Authentication.A1]
+Enabled                  = "no"
+UserName                 = ""
+Password                 = "*****"
+WeakestMethod            = "Login"
+UsePOP                   = "no"
+POPServer                = ""
+
+
+[SMTP.Authentication.A2]
+Enabled                  = "no"
+UserName                 = ""
+Password                 = "*****"
+WeakestMethod            = "Login"
+UsePOP                   = "no"
+POPServer                = ""
+
+
+[SNMP]
+Enabled                  = "yes"
+InitialUserPasswdSet     = "no"
+InitialUserPasswd        = "*****"
+EngineBoots              = "15"
+V1                       = "no"
+V2c                      = "yes"
+V3                       = "no"
+V1ReadCommunity          = "public"
+V1WriteCommunity         = "write"
+DSCP                     = "0"
+
+
+[SNMP.Trap]
+Enabled                  = "yes"
+
+
+[SNMP.Trap.T0]
+Address                  = "10.4.2.211"
+Community                = "LAIKA"
+
+
+[SNMP.Trap.T0.AuthFail]
+Enabled                  = "yes"
+
+
+[SNMP.Trap.T0.ColdStart]
+Enabled                  = "yes"
+
+
+[SNMP.Trap.T0.LinkUp]
+Enabled                  = "no"
+
+
+[SNMP.Trap.T0.WarmStart]
+Enabled                  = "yes"
+
+
+[SOCKS]
+Enabled                  = "no"
+Server                   = "socks"
+ServerPort               = "1080"
+ServerType               = "4"
+LocalNetworks            = "10.0.0.0/255.0.0.0, 172.16.0.0/255.240.0.0, 192.168.0.0/255.255.255.0"
+UserName                 = ""
+Password                 = "*****"
+
+
+[StatusLED]
+Usage                    = "on"
+FlashInterval            = "4"
+
+
+[System]
+BoaProtViewer            = "password"
+BoaPort                  = "80"
+AlternateBoaPort         = "0"
+BoaDSCP                  = "0"
+RootPwdSet               = "yes"
+
+
+[System.BoaGroupPolicy]
+axadmin                  = "http"
+axoper                   = "http"
+axview                   = "http"
+
+
+[Time]
+ServerTime               = "15:08:46"
+ServerDate               = "2011-04-28"
+TimeZone                 = "GMT-8"
+SyncSource               = "NTP"
+UTCOffset                = "-08:00:00"
+ObtainFromDHCP           = "yes"
+
+
+[Time.DST]
+Enabled                  = "yes"
+StartTypeOfDate          = "8"
+StartDay                 = "0"
+StartMonth               = "2"
+StartTime                = "02:00:00"
+StopTypeOfDate           = "1"
+StopDay                  = "0"
+StopMonth                = "10"
+StopTime                 = "01:00:00"
+Offset                   = "01:00:00"
+
+
+[Time.NTP]
+Server                   = "0.0.0.0"
+Update                   = "01:00:00"
+VolatileServer           = "10.5.1.12 10.5.1.13 "
+
+----- Snapshot of the current processes -----
+
+  PID  Uid     VmSize Stat Command
+    1 root        212 S   init 
+    2 root            SW< [kthreadd]
+    3 root            SW< [ksoftirqd/0]
+    4 root            SW< [events/0]
+    5 root            SW< [khelper]
+    6 root            SW< [kblockd/0]
+    7 root            SW  [pdflush]
+    8 root            SW  [pdflush]
+    9 root            SW< [kswapd0]
+   10 root            SW< [aio/0]
+   11 root            SW< [mtdblockd]
+   16 root            SWN [jffs2_gcd_mtd2]
+  229 root        236 S   /sbin/zeroconf-ip -i eth0 
+  361 root        300 S   /sbin/udhcpc -a -b -p /var/run/dhcp/dhcp4_eth0.pid -i
+  787 root        648 S   /bin/boa -c /etc/httpd/conf 
+ 1433 root        408 S   /bin/sh 
+ 2496 root        204 S   /sbin/respawnd 
+ 2500 root        264 S   /bin/log_combiner -o40000 
+ 2506 root        284 S   /usr/sbin/syslogd -m 0 -o 40000 
+ 2510 root        232 S   /usr/sbin/klogd -x 
+ 2516 root        440 S < /bin/imaged -rd -N -1 
+ 2522 root        204 S   /sbin/ipchanged -e /etc/ipchanged.script 
+ 2528 root        208 S   /usr/bin/bw --directory /var/cache/bw --text-file bw 
+ 2547 root        280 S   /bin/time_handler -s 10.5.1.12 10.5.1.13  
+ 2553 root        196 S   /bin/client_counter -d 
+ 2559 root        600 S   /bin/parhand /dev/null 50011 -d /usr/etc/param -d /et
+ 2567 root        256 S   /bin/axisns add -w -d 
+ 2577 root        352 S < /bin/saudiod --cameras 1 --nice -1 
+ 2582 root        268 S   /bin/vcd 
+ 2589 root        560 S   /bin/image_viewer -q 0 
+ 2591 root        560 S   /bin/image_viewer -q 0 
+ 2592 root        560 S   /bin/image_viewer -q 0 
+ 2593 root        560 S   /bin/image_viewer -q 0 
+ 2594 root        560 S   /bin/image_viewer -q 0 
+ 2596 root        560 S   /bin/image_viewer -q 0 
+ 2597 root        560 S   /bin/image_viewer -q 0 
+ 2599 root        560 S   /bin/image_viewer -q 0 
+ 2600 root        560 S   /bin/image_viewer -q 0 
+ 2602 root        560 S   /bin/image_viewer -q 0 
+ 2603 root        560 S   /bin/image_viewer -q 0 
+ 2604 root        560 S   /bin/image_viewer -q 0 
+ 2605 root        560 S   /bin/image_viewer -q 0 
+ 2606 root        560 S   /bin/image_viewer -q 0 
+ 2607 root        560 S   /bin/image_viewer -q 0 
+ 2608 root        560 S   /bin/image_viewer -q 0 
+ 2609 root        560 S   /bin/image_viewer -q 0 
+ 2611 root        560 S   /bin/image_viewer -q 0 
+ 2613 root        560 S   /bin/image_viewer -q 0 
+ 2615 root        560 S   /bin/image_viewer -q 0 
+ 2617 root        560 S   /bin/image_viewer -q 0 
+ 2618 root        560 S   /bin/image_viewer -q 0 
+ 2619 root        560 S   /bin/image_viewer -q 0 
+ 2628 root        344 S   /bin/recorder --backend /lib/recorder/artpeca-jpg.so 
+ 2629 root        156 S   /bin/recorder_cache_manager 
+ 2635 root        976 S < /bin/media_server -R --nice -1 -r 3 
+ 2656 root        520 S   /bin/rtspd 
+ 2662 root        300 S   /bin/dptzd 
+ 2667 root        240 S   /bin/utask -f /etc/task.list -f /etc/user.task.list -
+ 2750 root        640 S   /usr/sbin/snmpd 
+ 2762 root        216 S   /bin/mld /var/log/crit_mld_pipe -w /var/log/warning_m
+ 2769 root        516 S   /usr/bin/motion -c /etc/emotiond.conf 
+ 2782 root        256 S   /bin/iod 
+ 2792 root        316 S   /bin/ssid 
+ 2800 root        232 S   /bin/lang_handler 
+ 2806 root        324 S   /bin/gtourd 
+ 2808 root        324 S   /bin/gtourd 
+ 2809 root        324 S   /bin/gtourd 
+ 2814 root        212 S   /usr/sbin/debugar.cgi 
+ 3695 root        308 S   /bin/sh ./serverreport.cgi 
+ 3697 root        268 S   /bin/sh ./serverreport.cgi 
+ 3701 root        308 S   /bin/sh /usr/html/axis-cgi/admin/gen_serverreport.sh 
+ 3802 root        288 R   ps 
+ 3803 root        232 S   sleep 5 
+
+----- Settings for eth0 -----
+
+Settings for eth0:
+	Supported ports: [ TP MII ]
+	Supported link modes:   10baseT/Half 10baseT/Full 
+	                        100baseT/Half 100baseT/Full 
+	Supports auto-negotiation: Yes
+	Advertised link modes:  10baseT/Half 10baseT/Full 
+	                        100baseT/Half 100baseT/Full 
+	Advertised auto-negotiation: Yes
+	Speed: 100Mb/s
+	Duplex: Full
+	Port: MII
+	PHYAD: 0
+	Transceiver: internal
+	Auto-negotiation: on
+	Link detected: yes
+
+Driver information:
+driver: ARTPEC-A
+version: $Revision: 1.29 $
+firmware-version: N/A
+bus-info: N/A
+
+Device statistics:
+no stats available
+
+Register dump:
+Cannot get register dump: Operation not supported
+
+----- Network configuration -----
+
+1: lo: <LOOPBACK,UP,10000> mtu 16436 qdisc noqueue 
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 brd 127.255.255.255 scope host lo
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,10000> mtu 1500 qdisc pfifo_fast qlen 128
+    link/ether 00:40:8c:7c:89:cc brd ff:ff:ff:ff:ff:ff
+    inet 169.254.215.101/16 brd 169.254.255.255 scope link eth0
+    inet 10.5.2.88/22 brd 10.5.3.255 scope global eth0
+3: sit0: <NOARP> mtu 1480 qdisc noop 
+    link/sit 0.0.0.0 brd 0.0.0.0
+
+----- Routing table -----
+
+10.5.0.0/22 dev eth0  proto kernel  scope link  src 10.5.2.88 
+169.254.0.0/16 dev eth0  proto kernel  scope link  src 169.254.215.101 
+127.0.0.0/8 dev lo  scope link 
+default via 10.5.1.1 dev eth0 
+default dev eth0  scope link  metric 99 
+
+----- IPv6 routing table -----
+
+unreachable default dev lo  proto none  metric -1  error -101 metric 10 255
+
+----- Multicast groups -----
+
+1:	lo
+	inet  224.0.0.1
+	inet6 ff02::1
+2:	eth0
+	link  01:00:5e:44:89:cc
+	link  01:00:5e:00:00:01
+	inet  239.196.137.204 users 2
+	inet  224.0.0.1
+3:	sit0
+	inet6 ff02::1
+
+----- Network connections -----
+
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address                                       Foreign Address                                     State      
+tcp        0      0 0.0.0.0:554                                         0.0.0.0:*                                           LISTEN      
+tcp        0      0 :::80                                               :::*                                                LISTEN      
+tcp        0      0 ::ffff:10.5.2.88:80                                 ::ffff:10.5.3.8:50591                               TIME_WAIT   
+tcp        0      0 ::ffff:10.5.2.88:80                                 ::ffff:10.5.3.8:50593                               ESTABLISHED 
+udp        0      0 0.0.0.0:161                                         0.0.0.0:*                                                       
+udp        0      0 0.0.0.0:162                                         0.0.0.0:*                                                       
+udp        0      0 0.0.0.0:50000                                       0.0.0.0:*                                                       
+udp        0      0 0.0.0.0:50001                                       0.0.0.0:*                                                       
+udp        0      0 :::161                                              :::*                                                            
+udp        0      0 :::162                                              :::*                                                            
+Active UNIX domain sockets (servers and established)
+Proto RefCnt Flags       Type       State         I-Node Path
+unix  3      [ ]         DGRAM                    2136319 /var/run/ssid/ssidsocket
+unix  4      [ ]         DGRAM                    2136075 /var/run/utask/utasksocket
+unix  2      [ ACC ]     STREAM     LISTENING     2136336 /var/run/lang_handler/lang_socket
+unix  4      [ ]         DGRAM                    2135824 /var/run/viewer_socket
+unix  19     [ ]         DGRAM                    2135570 /var/log/slogd
+unix  2      [ ]         DGRAM                    2136354 /var/run/guardtour/guardtoursocket
+unix  2      [ ]         DGRAM                    2136384 /var/run/dbg-cgi/ctrl-cgi-socket
+unix  2      [ ACC ]     STREAM     LISTENING     2136386 /var/run/dbg-cgi/ctrl-segf-socket
+unix  2      [ ACC ]     STREAM     LISTENING     2135890 /var/run/recorder/recorder_socket
+unix  2      [ ACC ]     STREAM     LISTENING     2135680 /var/run/parhand/parhandsocket
+unix  2      [ ]         DGRAM                    2135967 /var/run/media_server/http_socket
+unix  2      [ ACC ]     STREAM     LISTENING     2135969 /var/run/media_server/stream_control
+unix  2      [ ]         DGRAM                    2136232 /var/run/motion/datasocket
+unix  3      [ ]         DGRAM                    2136234 /var/run/motion/requestsocket
+unix  2      [ ]         DGRAM                    2135512 /var/run/respawnd/control
+unix  2      [ ]         DGRAM                    2136282 /var/run/iod/iodsocket
+unix  2      [ ]         DGRAM                    2135772 /var/run/audio/eventsocket
+unix  2      [ ACC ]     STREAM     LISTENING     2136030 /var/run/rtspd/rtsp_socket
+unix  2      [ ACC ]     STREAM     LISTENING     2136041 /var/run/rtspd/http_socket
+unix  3      [ ]         DGRAM                    2136054 /var/run/ptz/coordsocket
+unix  3      [ ]         STREAM     CONNECTED     2136338 /var/run/lang_handler/lang_socket
+unix  3      [ ]         STREAM     CONNECTED     2498028 
+unix  3      [ ]         STREAM     CONNECTED     2498026 /var/run/parhand/parhandsocket
+unix  3      [ ]         STREAM     CONNECTED     2498025 
+unix  2      [ ]         DGRAM                    2498024 
+unix  2      [ ]         DGRAM                    2384166 
+unix  3      [ ]         STREAM     CONNECTED     2136363 
+unix  3      [ ]         STREAM     CONNECTED     2136362 
+unix  3      [ ]         STREAM     CONNECTED     2136361 
+unix  3      [ ]         STREAM     CONNECTED     2136360 
+unix  3      [ ]         STREAM     CONNECTED     2136358 /var/run/parhand/parhandsocket
+unix  3      [ ]         STREAM     CONNECTED     2136357 
+unix  2      [ ]         DGRAM                    2136335 
+unix  2      [ ]         DGRAM                    2136318 
+unix  2      [ ]         DGRAM                    2136291 
+unix  2      [ ]         DGRAM                    2136285 
+unix  3      [ ]         STREAM     CONNECTED     2136260 /var/run/parhand/parhandsocket
+unix  3      [ ]         STREAM     CONNECTED     2136259 
+unix  2      [ ]         DGRAM                    2136258 
+unix  2      [ ]         DGRAM                    2136231 
+unix  3      [ ]         STREAM     CONNECTED     2136198 /var/run/parhand/parhandsocket
+unix  3      [ ]         STREAM     CONNECTED     2136197 
+unix  3      [ ]         STREAM     CONNECTED     2136167 /var/run/parhand/parhandsocket
+unix  3      [ ]         STREAM     CONNECTED     2136164 
+unix  2      [ ]         DGRAM                    2136163 
+unix  2      [ ]         DGRAM                    2136146 
+unix  2      [ ]         DGRAM                    2136071 
+unix  2      [ ]         DGRAM                    2136065 
+unix  2      [ ]         DGRAM                    2136052 
+unix  3      [ ]         STREAM     CONNECTED     2136033 /var/run/media_server/stream_control
+unix  3      [ ]         STREAM     CONNECTED     2136032 
+unix  2      [ ]         DGRAM                    2136028 
+unix  3      [ ]         STREAM     CONNECTED     2135973 /var/run/parhand/parhandsocket
+unix  3      [ ]         STREAM     CONNECTED     2135972 
+unix  2      [ ]         DGRAM                    2135962 
+unix  3      [ ]         STREAM     CONNECTED     2135877 /var/run/parhand/parhandsocket
+unix  3      [ ]         STREAM     CONNECTED     2135876 
+unix  2      [ ]         DGRAM                    2135875 
+unix  2      [ ]         DGRAM                    2135829 
+unix  3      [ ]         STREAM     CONNECTED     2135827 /var/run/parhand/parhandsocket
+unix  3      [ ]         STREAM     CONNECTED     2135826 
+unix  3      [ ]         STREAM     CONNECTED     2135810 /var/run/parhand/parhandsocket
+unix  3      [ ]         STREAM     CONNECTED     2135809 
+unix  2      [ ]         DGRAM                    2135802 
+unix  2      [ ]         DGRAM                    2135769 
+unix  3      [ ]         STREAM     CONNECTED     2135751 /var/run/parhand/parhandsocket
+unix  3      [ ]         STREAM     CONNECTED     2135692 
+unix  2      [ ]         DGRAM                    2135679 
+unix  2      [ ]         DGRAM                    2135651 
+unix  2      [ ]         DGRAM                    2135608 
+unix  2      [ ]         DGRAM                    2135595 
+unix  2      [ ]         DGRAM                    2135584 
+unix  2      [ ]         DGRAM                    994668 
+unix  3      [ ]         STREAM     CONNECTED     326    
+unix  3      [ ]         STREAM     CONNECTED     325    
+
+----- Network statistics -----
+
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+    lo:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+  eth0:710454604 69325142 6050    0 6046  6489          0         0 1638245794 93335330    7    0    0     0       7          0
+  sit0:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+
+----- /proc/meminfo -----
+
+MemTotal:        24468 kB
+MemFree:          7168 kB
+Buffers:          2344 kB
+Cached:           6408 kB
+SwapCached:          0 kB
+Active:          10268 kB
+Inactive:         2304 kB
+SwapTotal:           0 kB
+SwapFree:            0 kB
+Dirty:               0 kB
+Writeback:           0 kB
+AnonPages:        3856 kB
+Mapped:           2348 kB
+Slab:             2372 kB
+SReclaimable:      760 kB
+SUnreclaim:       1612 kB
+PageTables:        548 kB
+NFS_Unstable:        0 kB
+Bounce:              0 kB
+WritebackTmp:        0 kB
+CommitLimit:     12232 kB
+Committed_AS:    18612 kB
+VmallocTotal:   221184 kB
+VmallocUsed:       392 kB
+VmallocChunk:   220792 kB
+
+----- vmstatus -----
+
+progres	totres	shared	text	data	lib	dirty	pid	name
+
+14	53	39	2	0	37	0	1	init
+0	0	0	0	0	0	0	10	aio/0
+0	0	0	0	0	0	0	11	mtdblockd
+30	102	72	46	0	49	0	1433	sh
+0	0	0	0	0	0	0	16	jffs2_gcd_mtd2
+0	0	0	0	0	0	0	2	kthreadd
+15	59	44	4	0	37	0	229	zeroconf-ip
+13	51	38	3	0	36	0	2496	respawnd
+22	66	44	3	0	44	0	2500	log_combiner
+21	71	50	6	0	43	0	2506	syslogd
+15	58	43	3	0	38	0	2510	klogd
+61	110	49	7	0	155	0	2516	imaged
+11	51	40	2	0	35	0	2522	ipchanged
+15	52	37	2	0	38	0	2528	bw
+16	70	54	7	0	51	0	2547	time_handler
+14	49	35	1	0	49	0	2553	client_counter
+77	150	73	24	0	107	0	2559	parhand
+15	64	49	6	0	50	0	2567	axisns
+27	88	61	41	0	117	0	2577	saudiod
+15	67	52	4	0	50	0	2582	vcd
+72	140	68	6	0	213	0	2589	image_viewer
+72	140	68	6	0	213	0	2591	image_viewer
+72	140	68	6	0	213	0	2592	image_viewer
+72	140	68	6	0	213	0	2593	image_viewer
+72	140	68	6	0	213	0	2594	image_viewer
+72	140	68	6	0	213	0	2596	image_viewer
+72	140	68	6	0	213	0	2597	image_viewer
+72	140	68	6	0	213	0	2599	image_viewer
+72	140	68	6	0	213	0	2600	image_viewer
+72	140	68	6	0	213	0	2602	image_viewer
+72	140	68	6	0	213	0	2603	image_viewer
+72	140	68	6	0	213	0	2604	image_viewer
+72	140	68	6	0	213	0	2605	image_viewer
+72	140	68	6	0	213	0	2606	image_viewer
+72	140	68	6	0	213	0	2607	image_viewer
+72	140	68	6	0	213	0	2608	image_viewer
+72	140	68	6	0	213	0	2609	image_viewer
+72	140	68	6	0	213	0	2611	image_viewer
+72	140	68	6	0	213	0	2613	image_viewer
+72	140	68	6	0	213	0	2615	image_viewer
+72	140	68	6	0	213	0	2617	image_viewer
+72	140	68	6	0	213	0	2618	image_viewer
+72	140	68	6	0	213	0	2619	image_viewer
+27	86	59	3	0	116	0	2628	recorder
+11	39	28	1	0	42	0	2629	recorder_cache_
+26	244	218	16	0	103	0	2635	media_server
+49	130	81	11	0	122	0	2656	rtspd
+18	75	57	8	0	64	0	2662	dptzd
+15	60	45	5	0	44	0	2667	utask
+46	160	114	37	0	100	0	2750	snmpd
+14	54	40	2	0	43	0	2762	mld
+37	129	92	7	0	131	0	2769	motion
+19	64	45	6	0	60	0	2782	iod
+22	79	57	11	0	75	0	2792	ssid
+14	58	44	4	0	37	0	2800	lang_handler
+21	81	60	4	0	66	0	2806	gtourd
+21	81	60	4	0	66	0	2808	gtourd
+21	81	60	4	0	66	0	2809	gtourd
+15	53	38	8	0	49	0	2814	debugar.cgi
+0	0	0	0	0	0	0	3	ksoftirqd/0
+20	75	55	62	0	115	0	361	udhcpc
+20	77	57	46	0	42	0	3695	serverreport.cg
+20	67	47	46	0	42	0	3697	serverreport.cg
+20	77	57	46	0	42	0	3701	gen_serverrepor
+16	58	42	62	0	113	0	3803	sleep
+18	74	56	46	0	40	0	3815	vmstatus.sh
+0	0	0	0	0	0	0	4	events/0
+0	0	0	0	0	0	0	5	khelper
+0	0	0	0	0	0	0	6	kblockd/0
+0	0	0	0	0	0	0	7	pdflush
+69	162	93	20	0	145	0	787	boa
+0	0	0	0	0	0	0	8	pdflush
+0	0	0	0	0	0	0	9	kswapd0
+total shared 3849
+total resident 2596
+
+----- Filesystems status -----
+
+Filesystem                Size      Used Available Use% Mounted on
+/dev/flash3              13.0M     13.0M         0 100% /
+/dev/part/rwfsblock       2.0M    376.0k      1.6M  18% /mnt/flash
+tmpfs                    11.9M    308.0k     11.6M   3% /var
+tmpfs                     9.0M         0      9.0M   0% /var/cache/recorder
+
+----- Server Report End -----
+

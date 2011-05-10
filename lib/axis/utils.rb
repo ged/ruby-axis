@@ -1,5 +1,6 @@
 #!/usr/bin/ruby
 
+require 'erb'
 require 'logger'
 require 'axis' unless defined?( Axis )
 require 'axis/mixins'

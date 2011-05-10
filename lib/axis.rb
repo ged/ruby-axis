@@ -17,7 +17,7 @@ module Axis
 
 	# Load the logformatters and some other stuff first
 	require 'axis/utils'
-
+	require 'axis/mixins'
 
 	### Logging
 	# Log levels
@@ -78,6 +78,10 @@ module Axis
 		return vstring
 	end
 
+
+	# Load the rest of the library
+	require 'axis/camera'
+	require 'axis/monkeypatches'
 
 end # module Axis
 

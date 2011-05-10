@@ -84,17 +84,38 @@ module Axis::SpecHelpers
 		end
 	end
 
+
+	### Load the testing camera config options from a YAML file.
+	def load_camera_config
+		unless defined?( @camera_config ) && @camera_config
+			if TEST_CONFIG_FILE.exist?
+				$stderr.puts "Loading camera config from #{TEST_CONFIG_FILE}" if $VERBOSE
+				@camera_config = YAML.load( TEST_CONFIG_FILE.read )
+			else
+				$stderr.puts "Skipping tests that require camera access. Copy the ",
+					"#{TEST_CONFIG_FILE}.example file and provide valid values for testing",
+					"with an actual camera."
+				@camera_config = {}
+			end
+		end
+
+		return @camera_config
+	end
+
 end
 
 
 ### Mock with Rspec
 Rspec.configure do |c|
+	include Axis::TestConstants
 
 	c.mock_with :rspec
 	c.include( Axis::SpecHelpers )
 
 	c.filter_run_excluding( :ruby_1_9_only => true ) if
 		Axis::SpecHelpers.vvec( RUBY_VERSION ) < Axis::SpecHelpers.vvec('1.9.0')
+	c.filter_run_excluding( :config_exists => true ) unless
+		TEST_CONFIG_FILE.exist?
 end
 
 # vim: set nosta noet ts=4 sw=4:

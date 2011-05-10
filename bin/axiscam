@@ -1,3 +1,30 @@
 #!/usr/bin/env ruby
 
-abort "you need to write me"
+require 'etc'
+require 'pp'
+require 'axis'
+require 'highline'
+require 'trollop'
+
+opts = Trollop.options do
+	banner "#$0 [OPTIONS] HOSTNAME"
+
+	opt :username, "The username to use when connecting.",
+		:default => Etc.getlogin
+	opt :password, "The password to use when connecting.",
+		:type => String
+	opt :debug, "Enabled debugging"
+end
+
+camhost = ARGV.shift or abort "No camera IP/host specified."
+Axis.logger.level = Logger::DEBUG if opts.debug
+
+prompt = HighLine.new
+cam = Axis::Camera.new( camhost )
+
+cam.username = opts.username || prompt.ask( "Username: " )
+cam.password = opts.password || prompt.ask( "Password: " ) {|q| q.echo = '*' }
+
+prompt.say( "Camera is running firmware: <%= color #{cam.firmware_version.dump}, :bold %>" )
+
+

@@ -17,17 +17,31 @@ class Axis::Camera
 
 	# The default camera endpoint -- this is combined with the camera
 	# host for each instance to build all the rest of the actions
-	ENDPOINT_URI = URI( 'http://localhost/axis-cgi/' ).freeze
+	ENDPOINT_URI = URI( 'http://localhost/axis-cgi' ).freeze
 
 	# The pattern to use to split the server report up into sections
-	SERVER_REPORT_DIVIDER = /^----- ([^\-]+) -----$/
+	SERVER_REPORT_DIVIDER = /(?:^|\r?\n)----- (.*?) -----\r?\n/
 
+	# End-of-line characters
+	EOL = /\r?\n/
+
+	# The maximum size (in bytes) to cache for a single object
+	MAX_CACHE_OBJECT_SIZE = 2 ** 17 # 128K
+
+	# The maximum size (in bytes) to cache for all objects
+	MAX_TOTAL_CACHE_SIZE = 2 ** 21  # 2M
+
+	# The maximum number of objects to cache
+	MAX_CACHED_OBJECT_COUNT = 16
+
+	# The maximum number of seconds a cached object lives in the cache
+	MAX_CACHE_LIFETIME = 60
 
 
 	### Create a new Axis::Camera object that will interact with the
 	### camera at +host+.
 	### @param [IPAddr, String] host  the hostname or IP address of the camera
-	def initialize( host, username, password )
+	def initialize( host, username=nil, password=nil )
 		@endpoint = ENDPOINT_URI.dup
 		@endpoint.host = host
 
@@ -35,7 +49,10 @@ class Axis::Camera
 		@password = password
 
 		@http = nil
-		@cache = Cache.new( 2**15, 2**16, 16, 60 )
+		@cache = Cache.new( MAX_CACHE_OBJECT_SIZE, 
+		                    MAX_TOTAL_CACHE_SIZE, 
+		                    MAX_CACHED_OBJECT_COUNT,
+		                    MAX_CACHE_LIFETIME )
 
 		self.log.info "Created a camera proxy for #@endpoint"
 	end
@@ -48,23 +65,131 @@ class Axis::Camera
 	# @return [URI]  the URI of the camera API's endpoint
 	attr_reader :endpoint
 
+	# @return [String]  the username to use when connecting
+	attr_accessor :username
 
-	### Fetch the camera's firmware version
-	### @return [String] the version string
-	def firmware_version
-		release = self.server_report[ :etc_release ]
-		return release[ /"([^"]+)"/, 1 ]
-	end
+	# @return [String]  the password to use when connecting
+	attr_accessor :password
 
 
 	### Fetch the server report from the camera.
 	### @return [Hash] the server report as a hash, keyed by section.
 	def server_report
-		report = @cache.fetch( :server_report ) do
-			raw_report = self.call_admin_serverreport
-			raw_report.split( SERVER_REPORT_DIVIDER ).inject
-		end
+		return @cache.fetch( :server_report ) do
+			self.log.debug "Cache miss for server_report."
+			raw_report = self.get_admin_serverreport
+			self.log.debug "  got %d bytes of report data." % [ raw_report.size ]
 
+			# Split the report into a hash keyed by normalized symbols
+			pairs = raw_report.
+				split( Axis::Camera::SERVER_REPORT_DIVIDER ).
+				slice( 1..-1 )
+			self.log.debug "  split raw report into %d sections" % [ pairs.length / 2 ]
+
+			pairs.each_slice( 2 ).
+				inject( {} ) do |hash, (key, val)|
+					self.log.debug "    adding the %s section: \"%s...\"." % [ key, val[0,40] ]
+					keysym = key.downcase.
+						gsub( /\W+/, '_' ).
+						gsub( /(^_+|_+$)/, '' ).
+						untaint.to_sym
+					self.log.debug "    key is: %p" % [ keysym ]
+					hash[ keysym ] = val
+					hash
+				end
+		end
+	end
+
+
+	### Fetch the camera firmware's full release ID
+	### @return [String] the firmware release ID in the form "id-<part>-<release>-<build>"
+	### @example
+	###   cam.firmware_release
+	###   # => "id-36065-4.49-8"
+	def firmware_release
+		release = self.server_report[ :etc_release ]
+		return release[ /"([^"]+)"/, 1 ]
+	end
+
+
+	### Fetch the model of the camera as a string.
+	### @return [String] the model of the camera
+	def model
+		data = self.server_report[ :server_report_start ]
+		return data[ /Product: (.*?)\r?\n/, 1 ]
+	end
+
+
+	### Fetch the model of the camera as a string.
+	### @return [String] the model of the camera
+	def serial_number
+		data = self.server_report[ :server_report_start ]
+		return data[ /Serial No: (.*?)\r?\n/, 1 ]
+	end
+
+
+	### Fetch the release variables that describe the camera's firmware as a Hash.
+	### @return [Hash<Symbol, String>]  the hash of release variables
+	def axis_release_variables
+		raw_section = self.server_report[ :usr_share_axis_release_variables ]
+		self.log.debug "Fetching release variables from %d bytes of raw data." % [ raw_section.length ]
+
+		return raw_section.strip.split( EOL ).inject( {} ) do |hash, line|
+			self.log.debug "  splitting up variable line: %p" % [ line ]
+			key, val = line.strip.split( '=', 2 )
+			self.log.debug 
+			hash[ key.downcase.untaint.to_sym ] = dequote( val )
+			hash
+		end
+	end
+
+
+	### Fetch the camera firmware's decimal release version.
+	### @return [String] firmware version number
+	### @example
+	###   cam.firmware_version
+	###   # => "4.49"
+	def firmware_version
+		release_vars = self.axis_release_variables
+		return release_vars[ :release ]
+	end
+
+
+	### Fetch the camera's "system information" (uname -a)
+	def system_information
+		return self.server_report[ :system_information ]
+	end
+
+
+	### Fetch a list of the user accounts on the camera.
+	def users
+		raw_output = self.vapix_get( :admin, :pwdgrp, :action => 'get' )
+		return raw_output.split( EOL ).inject( {} ) do |hash, line|
+			user, groups = line.split( '=', 2 )
+			hash[ user ] = dequote( groups ).split( ',' )
+			hash
+		end
+	end
+
+	# :TODO: 
+	# add_user( username, params={} )
+	# remove_user( username )
+	# update_user( username, params={} )
+
+
+	### Fetch the default image size. If the optional +camera+ parameters is specified, the size
+	### of additional onboard cameras will be queried.
+	### @return [Array<Fixnum, Fixnum>]  the size in pixels: height, width
+	### @example
+	###   cam.image_size
+	###   # => [ 176, 144 ]
+	def image_size( camera=1 )
+		raw_output = self.vapix_get( :view, :imagesize, :camera => camera )
+
+		width = raw_output[ /image width = (\d+)/i, 1 ]
+		height = raw_output[ /image height = (\d+)/i, 1 ]
+
+		return [ Integer(height), Integer(width) ]
 	end
 
 
@@ -72,21 +197,75 @@ class Axis::Camera
 	protected
 	#########
 
-
-
+	### Fetch the persistent HTTP connection, creating it if necessary.
 	def http
+		self.log.debug "Fetching HTTP connection."
 		@http ||= Net::HTTP::Persistent.new( 'axis-camera' )
 	end
 
 
-	def call_admin_serverreport
-		url = "%s/%s/%s.cgi" % [ self.endpoint, 'admin', 'serverreport' ]
+	### Call the given +cgi+ in the specified +subdir+ and return the server response. Add any
+	### +params+ to the request.
+	def vapix_get( subdir, cgi, params={} )
+		url = URI( "%s/%s/%s.cgi" % [self.endpoint, subdir, cgi] )
+		self.log.debug "Vapix API call to %s as a %s user..." % [ cgi, subdir ]
+
+		paramlist = params.inject([]) do |array, (key, values)|
+			Array( values ).each {|val| array << [key.to_s, val.to_s] }
+			array
+		end
+		self.log.debug "  flattened request params into: %p" % [ paramlist ]
+		url.query = URI.encode_www_form( paramlist )
+
+		self.log.debug "  authing as %s with password %s" % [ @username, '*' * @password.length ]
 		req = Net::HTTP::Get.new( url.request_uri )
 		req.basic_auth( @username, @password )
 
+		self.log.debug "  fetching %s using: %p" % [ url, req ]
 		response = self.http.request( url, req )
+		self.log.debug "  response: %s" % [ dump_response_object(response) ]
 
-		return response.body		
+		return response.body
+	end
+
+
+	### Fetch the server report.
+	def get_admin_serverreport
+		return self.vapix_get( :admin, :serverreport )
+	end
+
+
+	#######
+	private
+	#######
+
+	### Return the request object as a string suitable for debugging
+	def dump_request_object( request )
+		buf = "#{request.method} #{request.path} HTTP/#{Net::HTTP::HTTPVersion}\r\n"
+		request.each_capitalized do |k,v|
+			buf << "#{k}: #{v}\r\n"
+		end
+		buf << "\r\n"
+
+		return buf
+	end
+
+
+	### Return the response object as a string suitable for debugging
+	def dump_response_object( response )
+		buf = "#{response.code} #{response.message}\r\n"
+		response.each_capitalized do |k,v|
+			buf << "#{k}: #{v}\r\n"
+		end
+		buf << "\r\n"
+
+		return buf
+	end
+
+
+	### Strip one pair of leading and trailing quotes from +string+ and return the result.
+	def dequote( string )
+		return string.gsub( /(^"|"$)/, '' )
 	end
 
 end # class Axis::Camera
