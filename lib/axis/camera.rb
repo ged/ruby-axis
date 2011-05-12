@@ -234,6 +234,8 @@ class Axis::Camera
 		# Send the request
 		self.log.debug "  fetching %s using: %p" % [ url, req ]
 		response = self.http.request( url, req )
+		response.value
+
 		body = response.body
 		self.log.debug "  response: %s%s" % 
 			[ dump_response_object(response), response.body ]
@@ -245,6 +247,20 @@ class Axis::Camera
 		end
 
 		return body
+	rescue Net::HTTPServerException => err
+		self.log.error "%s when fetching %s/%s: %s" %
+			[ err.class.name, subdir, cgi, err.message ]
+
+		case err.response.code.to_i
+		when 404
+			msg = "Your camera apparently doesn't implement the %s.cgi. " % [ cgi ]
+			msg << "It sent a 404 response and said: %s" % [ err.message ]
+
+			raise NotImplementedError, msg
+		else
+			raise ScriptError, "unhandled %p:\n%s" %
+				[ err.response, dump_response_object(err.response) ]
+		end
 	end
 
 
