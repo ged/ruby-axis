@@ -184,12 +184,26 @@ class Axis::Camera
 	###   cam.image_size
 	###   # => [ 176, 144 ]
 	def image_size( camera=1 )
+		self.log.debug "Fetching image size for camera %d" % [ camera ]
 		raw_output = self.vapix_get( :view, :imagesize, :camera => camera )
+		self.log.debug "  raw size output:\n%s" % [ raw_output ]
 
 		width = raw_output[ /image width = (\d+)/i, 1 ]
 		height = raw_output[ /image height = (\d+)/i, 1 ]
 
 		return [ Integer(height), Integer(width) ]
+	end
+
+
+	### Check the video status of the specified +camera+. 
+	### @return [boolean] +true+ if video is enabled.
+	### @note This doesn't work on my test camera; it returns a 404.
+	def video_status( camera=1 )
+		self.log.debug "Fetching video status for camera %d" % [ camera ]
+		raw_output = self.vapix_get( :view, :videostatus, :status => camera )
+		self.log.debug "  raw video status output:\n%s" % [ raw_output ]
+
+		return (raw_output !~ /video #{camera} = no video/i)
 	end
 
 
@@ -210,22 +224,45 @@ class Axis::Camera
 		url = URI( "%s/%s/%s.cgi" % [self.endpoint, subdir, cgi] )
 		self.log.debug "Vapix API call to %s as a %s user..." % [ cgi, subdir ]
 
-		paramlist = params.inject([]) do |array, (key, values)|
-			Array( values ).each {|val| array << [key.to_s, val.to_s] }
-			array
-		end
-		self.log.debug "  flattened request params into: %p" % [ paramlist ]
-		url.query = URI.encode_www_form( paramlist )
+		url.query = self.make_query_args( params ) unless params.empty?
 
+		# Build the request object
 		self.log.debug "  authing as %s with password %s" % [ @username, '*' * @password.length ]
 		req = Net::HTTP::Get.new( url.request_uri )
 		req.basic_auth( @username, @password )
 
+		# Send the request
 		self.log.debug "  fetching %s using: %p" % [ url, req ]
 		response = self.http.request( url, req )
-		self.log.debug "  response: %s" % [ dump_response_object(response) ]
+		body = response.body
+		self.log.debug "  response: %s%s" % 
+			[ dump_response_object(response), response.body ]
 
-		return response.body
+		# Check for errors in the reponse body
+		case body
+		when /<!--(.*?error.*?)-->/i, /^# error: (.*)$/i, /^# request failed: (.*)$/i
+			raise Axis::ParameterError, $1
+		end
+
+		return body
+	end
+
+
+	### Turn the parameters from the given +paramhash+ with either single values or arrays of 
+	### values into an array of parameter tuples, then encode it as urlencoded form values.
+	### @param [Hash] paramhash  the parameter hash. Array values will be expanded into multiple
+	###                          query arguments.
+	### @return [String] the query string
+	def make_query_args( paramhash )
+		self.log.debug "Making query args from paramhash: %p" % [ paramhash ]
+
+		paramlist = paramhash.inject([]) do |array, (key, values)|
+			Array( values ).each {|val| array << [key.to_s, val.to_s] }
+			array
+		end
+		self.log.debug "  flattened request params into: %p" % [ paramlist ]
+
+		return URI.encode_www_form( paramlist )
 	end
 
 

@@ -104,6 +104,32 @@ describe Axis::Camera do
 				res[1].should be_a( Integer )
 			end
 
+			it "can fetch the default height and width of the second camera" do
+				res = nil
+
+				# Depending on the target camera, this should either be a valid response
+				# or an Axis::ParameterError if there isn't a second camera.
+				begin
+					res = @camera.image_size( 2 )
+				rescue Axis::ParameterError => err
+					err.should be_an( Axis::ParameterError )
+					err.message.should =~ /error getting image params/i
+				else
+					res.should be_an( Array )
+					res.should have( 2 ).members
+					res[0].should be_a( Integer )
+					res[1].should be_a( Integer )
+				end
+			end
+
+			it "can fetch the video status of the first video source" do
+				pending "this currently just 404s, despite being documented in the API docs" do
+					@camera.video_status.should be_true()
+				end
+			end
+
+			it "can fetch a bitmap image from the default camera at the default resolution"
+
 		end
 
 	end
