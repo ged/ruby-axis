@@ -184,12 +184,25 @@ class Axis::Camera
 	###   cam.image_size
 	###   # => [ 176, 144 ]
 	def image_size( camera=1 )
+		self.log.debug "Fetching image size for camera %d" % [ camera ]
 		raw_output = self.vapix_get( :view, :imagesize, :camera => camera )
+		self.log.debug "  raw size output:\n%s" % [ raw_output ]
 
 		width = raw_output[ /image width = (\d+)/i, 1 ]
 		height = raw_output[ /image height = (\d+)/i, 1 ]
 
 		return [ Integer(height), Integer(width) ]
+	end
+
+
+	### Check the video status of the specified +camera+. 
+	### @return [boolean] +true+ if video is enabled.
+	def video_status( camera=1 )
+		self.log.debug "Fetching video status for camera %d" % [ camera ]
+		raw_output = self.vapix_get( :view, :videostatus, :status => camera )
+		self.log.debug "  raw video status output:\n%s" % [ raw_output ]
+
+		return (raw_output !~ /video #{camera} = no video/i)
 	end
 
 
