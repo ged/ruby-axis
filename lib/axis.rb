@@ -15,6 +15,10 @@ module Axis
 	REVISION = %q$Revision$
 
 
+	class Exception < RuntimeError; end
+	class ParameterError < Axis::Exception; end
+
+
 	# Load the logformatters and some other stuff first
 	require 'axis/utils'
 	require 'axis/mixins'

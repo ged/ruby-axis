@@ -210,6 +210,8 @@ class Axis::Camera
 		url = URI( "%s/%s/%s.cgi" % [self.endpoint, subdir, cgi] )
 		self.log.debug "Vapix API call to %s as a %s user..." % [ cgi, subdir ]
 
+		# Turn the parameters from a hash with either single values or arrays of values
+		# into an array of parameter tuples, then encode it as urlencoded form values
 		paramlist = params.inject([]) do |array, (key, values)|
 			Array( values ).each {|val| array << [key.to_s, val.to_s] }
 			array
@@ -217,15 +219,41 @@ class Axis::Camera
 		self.log.debug "  flattened request params into: %p" % [ paramlist ]
 		url.query = URI.encode_www_form( paramlist )
 
+		# Build the request object
 		self.log.debug "  authing as %s with password %s" % [ @username, '*' * @password.length ]
 		req = Net::HTTP::Get.new( url.request_uri )
 		req.basic_auth( @username, @password )
 
+		# Send the request
 		self.log.debug "  fetching %s using: %p" % [ url, req ]
 		response = self.http.request( url, req )
-		self.log.debug "  response: %s" % [ dump_response_object(response) ]
+		response.value
 
-		return response.body
+		body = response.body
+		self.log.debug "  response: %s%s" % 
+			[ dump_response_object(response), response.body ]
+
+		# Check for errors in the reponse body
+		case body
+		when /<!--(.*?error.*?)-->/i, /^# error: (.*)$/i, /^# request failed: (.*)$/i
+			raise Axis::ParameterError, $1
+		end
+
+		return body
+	rescue Net::HTTPServerException => err
+		self.log.error "%s when fetching %s/%s: %s" %
+			[ err.class.name, subdir, cgi, err.message ]
+
+		case err.response.code.to_i
+		when 404
+			msg = "Your camera apparently doesn't implement the %s.cgi. " % [ cgi ]
+			msg << "It sent a 404 response and said: %s" % [ err.message ]
+
+			raise NotImplementedError, msg
+		else
+			raise ScriptError, "unhandled %p:\n%s" %
+				[ err.response, dump_response_object(err.response) ]
+		end
 	end
 
 

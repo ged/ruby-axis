@@ -10,7 +10,10 @@ BEGIN {
 }
 
 require 'yaml'
+require 'stringio'
+
 require 'rspec'
+
 require 'spec/lib/helpers'
 require 'axis/camera'
 
@@ -29,6 +32,51 @@ describe Axis::Camera do
 		Axis::Camera.new( 'outside-camera.example.com' ).endpoint.should ==
 			URI( 'http://outside-camera.example.com/axis-cgi' )
 	end
+
+
+	context "with a stubbed camera" do
+
+		before( :each ) do
+			@camera = Axis::Camera.new( 'dummyhost', 'user', 'pass' )
+			@http = stub( "http client" )
+			@camera.instance_variable_set( :@http, @http )
+		end
+
+		COMMENT_ERROR_RESPONSE = %{
+			<!-- Error getting image params. Check syslog. -->
+		}.gsub( /\t{3}/m, "" ).lstrip
+
+		it "handles comment-style error returns by raising an Axis::ParameterError" do
+			response = mock( "http response",
+				:code => '200', :message => "OK", :each_capitalized => {}, :value => nil )
+			@http.stub( :request ).and_return( response )
+			response.stub( :body ).and_return( COMMENT_ERROR_RESPONSE )
+
+			expect {
+				@camera.image_size( 2 )
+			}.to raise_exception( Axis::ParameterError, /error getting image params/i )
+		end
+
+		NOT_FOUND_RESPONSE = %{
+			<HTML><HEAD><TITLE>404 Not Found</TITLE></HEAD>
+			<BODY><H1>404 Not Found</H1>
+			The requested URL /axis-cgi/view/videostatus.cgi was not found on this server.
+			</BODY></HTML>
+		}.gsub( /^\t{3}/m, "" ).strip
+
+		it "handles a 404 by raising a NotImplementedError" do
+			response = mock( "http response", :code => '404', :message => "Not found", :each_capitalized => {} )
+			@http.stub( :request ).and_return( response )
+			response.stub( :value ).
+				and_raise( Net::HTTPNotFound::EXCEPTION_TYPE.new("404 Not Found", response) )
+
+			expect {
+				@camera.video_status( 2 )
+			}.to raise_exception( NotImplementedError, /videostatus/ )
+		end
+
+	end
+
 
 
 	context "with a networked camera", :config_exists => true do

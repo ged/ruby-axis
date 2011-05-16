@@ -2,6 +2,7 @@
 
 # Monkeypatches for standard classes.
 
+require 'uri' unless defined?( URI )
 
 # Backport of Ruby 1.9.2 URI methods to 1.8.7.
 module URIFormEncoding
@@ -26,7 +27,7 @@ module URIFormEncoding
 			TBLENCWWWCOMP_[' '] = '+'
 			TBLENCWWWCOMP_.freeze
 		end
-		return str.to_s.gsub(/[^*\-.0-9A-Z_a-z]/, TBLENCWWWCOMP_)
+		return str.to_s.gsub( /[^*\-.0-9A-Z_a-z]/ ) {|*| TBLENCWWWCOMP_[$1] }
 	end
 
 	# Decode given +str+ of URL-encoded form data.
@@ -47,7 +48,7 @@ module URIFormEncoding
 			TBLDECWWWCOMP_.freeze
 		end
 		raise ArgumentError, "invalid %-encoding (#{str})" unless /\A(?:%\h\h|[^%]+)*\z/ =~ str
-		return str.gsub( /\+|%\h\h/, TBLDECWWWCOMP_ )
+		return str.gsub( /\+|%\h\h/ ) {|*| TBLDECWWWCOMP_[$1] }
 	end
 
 	# Generate URL-encoded form data from given +enum+.
