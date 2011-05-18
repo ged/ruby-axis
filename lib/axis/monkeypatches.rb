@@ -27,7 +27,7 @@ module URIFormEncoding
 			TBLENCWWWCOMP_[' '] = '+'
 			TBLENCWWWCOMP_.freeze
 		end
-		return str.to_s.gsub( /[^*\-.0-9A-Z_a-z]/ ) {|*| TBLENCWWWCOMP_[$1] }
+		return str.to_s.gsub( /([^*\-.0-9A-Z_a-z])/ ) {|*| TBLENCWWWCOMP_[$1] }
 	end
 
 	# Decode given +str+ of URL-encoded form data.
@@ -47,8 +47,8 @@ module URIFormEncoding
 			TBLDECWWWCOMP_['+'] = ' '
 			TBLDECWWWCOMP_.freeze
 		end
-		raise ArgumentError, "invalid %-encoding (#{str})" unless /\A(?:%\h\h|[^%]+)*\z/ =~ str
-		return str.gsub( /\+|%\h\h/ ) {|*| TBLDECWWWCOMP_[$1] }
+		raise ArgumentError, "invalid %-encoding (#{str.dump})" unless /\A(?:%[[:xdigit:]]{2}|[^%]+)*\z/ =~ str
+		return str.gsub( /(\+|%[[:xdigit:]]{2})/ ) {|*| TBLDECWWWCOMP_[$1] }
 	end
 
 	# Generate URL-encoded form data from given +enum+.
@@ -83,7 +83,7 @@ module URIFormEncoding
 		str
 	end
 
-	WFKV_ = '(?:%\h\h|[^%#=;&])' # :nodoc:
+	WFKV_ = '(?:%[[:xdigit:]]{2}|[^%#=;&])' # :nodoc:
 
 	# Decode URL-encoded form data from given +str+.
 	#
@@ -108,7 +108,7 @@ module URIFormEncoding
 		end
 		ary = []
 		$&.scan(/([^=;&]+)=([^;&]*)/) do
-			ary << [decode_www_form_component($1, enc), decode_www_form_component($2, enc)]
+			ary << [decode_www_form_component($1), decode_www_form_component($2)]
 		end
 		ary
 	end

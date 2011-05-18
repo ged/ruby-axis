@@ -171,7 +171,9 @@ describe Axis::Camera do
 			end
 
 			it "can fetch the video status of the first video source" do
-				@camera.video_status.should be_true()
+				pending "access to a test camera on which this is actually implemented" do
+					@camera.video_status.should be_true()
+				end
 			end
 
 		end
