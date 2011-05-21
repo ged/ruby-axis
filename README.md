@@ -1,6 +1,7 @@
 # axis
 
-* http://bitbucket.org/ged/axis
+* http://bitbucket.org/ged/ruby-axis
+
 
 ## Description
 
