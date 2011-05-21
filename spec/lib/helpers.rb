@@ -114,6 +114,8 @@ Rspec.configure do |c|
 
 	c.filter_run_excluding( :ruby_1_9_only => true ) if
 		Axis::SpecHelpers.vvec( RUBY_VERSION ) < Axis::SpecHelpers.vvec('1.9.0')
+	c.filter_run_excluding( :ruby_1_8_only => true ) if
+		Axis::SpecHelpers.vvec( RUBY_VERSION ) >= Axis::SpecHelpers.vvec('1.9.0')
 	c.filter_run_excluding( :config_exists => true ) unless
 		TEST_CONFIG_FILE.exist?
 end
