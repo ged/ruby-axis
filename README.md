@@ -66,7 +66,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 [axis-netcam]: http://axis-netcam.rubyforge.org/
-[bitbucket]: FIX (bitbucket or hg repo)
-[github]: FIX (github mirror)
+[bitbucket]: https://bitbucket.org/ged/ruby-axis
+[github]: https://github.com/ged/ruby-axis
 
 
