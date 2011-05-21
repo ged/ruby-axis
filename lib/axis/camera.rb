@@ -13,7 +13,8 @@ require 'axis' unless defined?( Axis )
 # VAPIX® HTTP API of the camera, and so requires that the camera be
 # running at least version 4 of the firmware.
 class Axis::Camera
-	include Axis::Loggable
+	include Axis::Loggable,
+	        Axis::HashUtilities
 
 	# The default camera endpoint -- this is combined with the camera
 	# host for each instance to build all the rest of the actions
@@ -37,6 +38,13 @@ class Axis::Camera
 	# The maximum number of seconds a cached object lives in the cache
 	MAX_CACHE_LIFETIME = 60
 
+	# Valid values for the 'level' argument to the #param methods.
+	VALID_PARAM_LEVELS = [ :admin, :view, :operator ]
+
+
+	#################################################################
+	###	I N S T A N C E   M E T H O D S
+	#################################################################
 
 	### Create a new Axis::Camera object that will interact with the
 	### camera at +host+.
@@ -70,6 +78,85 @@ class Axis::Camera
 
 	# @return [String]  the password to use when connecting
 	attr_accessor :password
+
+
+	### Fetch parameters from the camera at the given permission +level+, with
+	### an optional +filter+, and return them as a simple Hash keyed by dotted property
+	### name.
+	### @param [Symbol] level  the permission level to restrict the results to (should be one of
+	###                        {VALID_PARAM_LEVELS})
+	### @param [String] filter Restrict the values returned to <group>.<name>. If <name> is 
+	###                        omitted, all the parameters of the <group> are returned.
+	###                        The camera parameters must be entered exactly as they are named 
+	###                        in the camera or video server.
+	###                        
+	###                        Wildcards (*) can be used when listing parameters. See example below.
+	###                        
+	###                        If +filter+ is omitted, all parameters in the device are returned.
+	### @example Fetch all parameters at the 'admin' level.
+	###   cam.params( :admin )
+	###   # => {"StatusLED.FlashInterval"=>4, 
+	###   #     "Layout.CustomLink.C0.Name"=>"Custom link 1",
+	###   #     "Event.E0.Type"=>"T", ...
+	### @example Fetch all 'Network' parameters at the 'admin' level.
+	###   cam.params( :admin, 'Network' )
+	###   # => {"Network.RTSP.Port"=>554,
+	###   #     "Network.RTP.R0.TTL"=>5, ...
+	### @example Fetch the names of all events.
+	###   cam.params( :admin, 'Event.*.Name' )
+	###   # => {"Event.E0.Name"=>"Movement"}
+	def params( level=:admin, filter=nil )
+		self.log.debug "Fetching params hash for %s-level params, filter: %p" % [ level, filter ]
+		args = { :action => 'list' }
+		args.merge!( :group => filter ) if filter
+		cachekey = "params_%s_%s" % [ level, filter ]
+
+		return @cache.fetch( cachekey ) do
+			self.log.debug "  cache miss for %p" % [ cachekey ]
+			rawval = self.vapix_get( level, :param, args )
+			rawval.each_line.inject( {} ) do |hash, line|
+				key, val = line.chomp.split( /=\s*/, 2 )
+				key.sub!( /^root\./, '' )
+
+				hash[ key ] = parse_param_value( val )
+				hash
+			end
+		end
+	end
+
+
+	### Fetch all parameters from the camera at the given permission +level+ as
+	### a complex Hash.
+	### @param [Symbol] level  the permission level to restrict the results to (should be one of
+	###                        {VALID_PARAM_LEVELS})
+	### @example Fetch the hash of all parameters at the 'view' level.
+	###   cam.params_hash( :view )
+	###   # => {"PTZ"=>{"Preset"=>{"P0"=>{"HomePosition"=>"-1", "Name"=>"", "ImageSource"=>0}}, 
+	###   #             "Various"=>{"V1"=>{"MotionWhileZoomed"=>"false", "TiltEnabled"=>"true", ...
+	def params_hash( level=:admin )
+		self.log.debug "Fetching params hash for %s-level params" % [ level ]
+		args = { :action => 'list' }
+		cachekey = "params_#{level}"
+
+		return @cache.fetch( cachekey ) do
+			self.log.debug "  cache miss for %p" % [ cachekey ]
+			rawval = self.vapix_get( level, :param, args )
+			rawval.each_line.inject( {} ) do |hash, line|
+				key, val = line.chomp.split( /=\s*/, 2 )
+				keyparts = key.sub( /^root\./, '' ).split( '.' )
+
+				# Find/create the inner-most hash by traversing all but the last parts of the key
+				subhash = keyparts[ 0..-2 ].inject( hash ) do |subhash,keypart|
+					subhash[ keypart ] ||= {}
+				end
+
+				# Add the parsed value to the innermost hash
+				subhash[ keyparts.last ] = parse_param_value( val )
+
+				hash
+			end
+		end
+	end
 
 
 	### Fetch the server report from the camera.
@@ -115,16 +202,14 @@ class Axis::Camera
 	### Fetch the model of the camera as a string.
 	### @return [String] the model of the camera
 	def model
-		data = self.server_report[ :server_report_start ]
-		return data[ /Product: (.*?)\r?\n/, 1 ]
+		return self.params_hash( :view )['Brand']['Brand']
 	end
 
 
 	### Fetch the model of the camera as a string.
 	### @return [String] the model of the camera
 	def serial_number
-		data = self.server_report[ :server_report_start ]
-		return data[ /Serial No: (.*?)\r?\n/, 1 ]
+		return self.params_hash( :view )['Properties']['System']['SerialNumber']
 	end
 
 
@@ -207,6 +292,98 @@ class Axis::Camera
 	end
 
 
+	### Fetch a bitmap image with the default resolution as defined in the system configuration
+	### from the specified +camera+.
+	### @param [Fixnum] camera  the camera number (for multi-camera devices)
+	### @return [String] the raw bitmap image data
+	### @note
+	###    This doesn't work on my test camera, as it returns what appears to be two
+	###    overlapping responses:
+	###        GET /axis-cgi/bitmap/image.bmp?camera=1 HTTP/1.0
+	###        Accept: */*
+	###        Connection: keep-alive
+	###        Authorization: Basic eWVwL25vcGU=
+	###        Host: axis-camera-tester.example.com
+	###        Keep-Alive: 30
+    ###        
+	###        HTTP/1.0 200 OK
+	###        Date: Fri, 20 May 2011 10:33:08 GMT
+	###        Accept-Ranges: bytes
+	###        Connection: close
+	###        Value:"/axis-cgi/bitmap/image.bmp"
+	###        HTTP/1.0 200 OK
+	###        Content-Type: image/bmp
+	###        Content-Length: 921654
+	###        
+	###        <bitmap data>
+	### 
+	###   While I suppose I could just drop down to the raw socket level for this one 
+	###   call and parse out the erroneous line from the response myself, given that 
+	###   there are a bunch of other methods for fetching image data, I'm going to just
+	###   leave this as-is.
+	###
+	### @raise [NotImplementedError] if the camera doesn't support bitmap images
+	def get_bitmap( camera=1 )
+		raise NotImplementedError, "This camera doesn't support the 'bitmap' image format" unless
+			self.params['Properties.Image.Format'].include?( 'bitmap' )
+
+		self.log.debug "Fetching bitmap image from camera %d" % [ camera ]
+		bitmap = self.vapix_get( :bitmap, :image, '.bmp', :camera => camera )
+		return bitmap
+	end
+
+
+	### Fetch a JPEG image from the specified +camera+.
+	### @param [Hash] options    image options
+	### @option options [String]  resolution  the resolution of the returned image; one of:
+	###     1280x1024, 1280x960, 1280x720, 768x576, 4CIF,  704x576, 704x480, VGA, 640x480, 640x360, 
+	###     2CIFEXP, 2CIF, 704x288, 704x240, 480x360,  CIF, 384x288, 352x288, 352x240, 320x240, 
+	###     240x180, QCIF, 192x144, 176x144, 176x120, 160x120
+	### @option options [Integer] camera      Selects the source camera; applies only to video 
+	###     servers with more than one video input.
+	### @option options [Integer] compression Adjusts the compression level of the image. Higher 
+	###     values correspond to higher compression, i.e. lower quality and smaller image size.
+	### @option options [Integer] colorlevel (0-100)  Sets level of color or grey-scale; 
+	###     0 = grey-scale, 100 = full color. Note: This value is internally mapped and is 
+	###     therefore product-dependent.
+	### @option options [Boolean] color                Enable/disable color.
+	### @option options [Boolean] clock                Shows/hides the time stamp.
+	### @option options [Boolean] date                 Shows/hides the date.
+	### @option options [Boolean] text                 Shows/hides the text.
+	### @option options [String]  textstring           The text shown in the image.
+	### @option options [String]  textcolor            ('black' or 'white') The color of the text shown 
+	###     in the image.
+	### @option options [String]  textbackgroundcolor  ('black', 'white', 'transparent', 
+	###     'semitransparent') The color of the text background shown in the image.
+	### @option options [Integer] rotation             (0, 90, 180, 270)  Rotates the image 
+	###     clockwise.
+	### @option options [String] textpos	           ('top', 'bottom') The position of the 
+	###     string shown in the image.
+	### @option options [Boolean] overlayimage         Enable/disable overlay image.
+	### @option options [String] overlaypos            Set the position of the overlay image, in the
+	###     form <xoffset>x<yoffset>, e.g., '18x20'.
+	### @option options [Boolean] squarepixel          Enable/disable square pixel correction. 
+	###     Applies only to video servers.
+	### 
+	### @return JPEG image data.
+	### @raise [NotImplementedError] if the camera doesn't support JPEG images.
+	def get_jpeg( options={} )
+		raise NotImplementedError, "This camera doesn't support the 'jpeg' image format" unless
+			self.params['Properties.Image.Format'].include?( 'jpeg' )
+
+		# Translate boolean options to 1 or 0.
+		options = symbolify_keys( options )
+		[ :color, :clock, :date, :text, :overlayimage, :squarepixel ].each do |boolkey|
+			options[ boolkey ] = options[ boolkey ] ? '1' : '0' if options.key?( boolkey )
+		end
+
+		self.log.debug "Fetching JPEG image with options: %p" % [ options ]
+		jpeg = self.vapix_get( :jpg, :image, options )
+
+		return jpeg
+	end
+
+
 	#########
 	protected
 	#########
@@ -215,13 +392,21 @@ class Axis::Camera
 	def http
 		self.log.debug "Fetching HTTP connection."
 		@http ||= Net::HTTP::Persistent.new( 'axis-camera' )
+		@http.debug_output = $stderr if $DEBUG
+
+		return @http
 	end
 
 
 	### Call the given +cgi+ in the specified +subdir+ and return the server response. Add any
 	### +params+ to the request.
-	def vapix_get( subdir, cgi, params={} )
-		url = URI( "%s/%s/%s.cgi" % [self.endpoint, subdir, cgi] )
+	def vapix_get( subdir, cgi, ext='.cgi', params={} )
+		if ext.is_a?( Hash )
+			params = ext
+			ext = '.cgi'
+		end
+
+		url = URI( "%s/%s/%s%s" % [self.endpoint, subdir, cgi, ext] )
 		self.log.debug "Vapix API call to %s as a %s user..." % [ cgi, subdir ]
 
 		url.query = self.make_query_args( params ) unless params.empty?
@@ -238,11 +423,13 @@ class Axis::Camera
 
 		body = response.body
 		self.log.debug "  response: %s%s" % 
-			[ dump_response_object(response), response.body ]
+			[ dump_response_object(response), response.body[0,100].dump ]
 
 		# Check for errors in the reponse body
 		case body
-		when /<!--(.*?error.*?)-->/i, /^# error: (.*)$/i, /^# request failed: (.*)$/i
+		when /<!--(.*?error.*?)-->/i,
+			 /^# error: (.*)$/i,
+			 /^# request failed: (.*)$/i
 			raise Axis::ParameterError, $1
 		end
 
@@ -291,6 +478,27 @@ class Axis::Camera
 	#######
 	private
 	#######
+
+	### Turn the given +value+ string from the 'param' CGI into a Ruby value and
+	### return it. This maps 'yes' => true, 'no' => false, comma-delimited lists into 
+	### Arrays, etc.
+	def parse_param_value( value )
+		return case value
+		when 'yes'
+			true
+		when 'no'
+			false
+		when /^\d+$/
+			Integer( value )
+		when /^\d+\.\d+$/
+			Float( value )
+		when /,/
+			value.split( /,\s*/ ).map( &method(:parse_param_value) )
+		else
+			value
+		end
+	end
+
 
 	### Return the request object as a string suitable for debugging
 	def dump_request_object( request )

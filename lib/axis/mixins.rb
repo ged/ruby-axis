@@ -138,6 +138,119 @@ module Axis
 
 	end # module ANSIColorUtilities
 
+
+	### A collection of utilities for working with Hashes.
+	module HashUtilities
+
+		###############
+		module_function
+		###############
+
+		### Return a version of the given +hash+ with its keys transformed
+		### into Strings from whatever they were before.
+		def stringify_keys( hash )
+			newhash = {}
+
+			hash.each do |key,val|
+				if val.is_a?( Hash )
+					newhash[ key.to_s ] = stringify_keys( val )
+				else
+					newhash[ key.to_s ] = val
+				end
+			end
+
+			return newhash
+		end
+
+
+		### Return a duplicate of the given +hash+ with its identifier-like keys
+		### transformed into symbols from whatever they were before.
+		def symbolify_keys( hash )
+			newhash = {}
+
+			hash.each do |key,val|
+				keysym = key.to_s.dup.untaint.to_sym
+
+				if val.is_a?( Hash )
+					newhash[ keysym ] = symbolify_keys( val )
+				else
+					newhash[ keysym ] = val
+				end
+			end
+
+			return newhash
+		end
+		alias_method :internify_keys, :symbolify_keys
+
+
+		# Recursive hash-merge function
+		def merge_recursively( key, oldval, newval )
+			case oldval
+			when Hash
+				case newval
+				when Hash
+					oldval.merge( newval, &method(:merge_recursively) )
+				else
+					newval
+				end
+
+			when Array
+				case newval
+				when Array
+					oldval | newval
+				else
+					newval
+				end
+
+			else
+				newval
+			end
+		end
+
+	end # HashUtilities
+
+
+	### A collection of utilities for working with Arrays.
+	module ArrayUtilities
+
+		###############
+		module_function
+		###############
+
+		### Return a version of the given +array+ with any Symbols contained in it turned into
+		### Strings.
+		def stringify_array( array )
+			return array.collect do |item|
+				case item
+				when Symbol
+					item.to_s
+				when Array
+					stringify_array( item )
+				else
+					item
+				end
+			end
+		end
+
+
+		### Return a version of the given +array+ with any Strings contained in it turned into
+		### Symbols.
+		def symbolify_array( array )
+			return array.collect do |item|
+				case item
+				when String
+					item.to_sym
+				when Array
+					symbolify_array( item )
+				else
+					item
+				end
+			end
+		end
+
+	end # module ArrayUtilities
+
+
 end # module Axis
 
 # vim: set nosta noet ts=4 sw=4:

@@ -78,7 +78,6 @@ describe Axis::Camera do
 	end
 
 
-
 	context "with a networked camera", :config_exists => true do
 
 		before( :all ) do
@@ -123,6 +122,26 @@ describe Axis::Camera do
 			rval.should be_a( Hash )
 			rval.should include( :release, :build, :buildtime, :part, :fs_type_part_rootfs,
 			 	:fs_type_part_rwfs, :mopts_part_rwfs )
+		end
+
+		it "can fetch the 'view'-level parameters for the camera" do
+			rval = @camera.params
+
+			rval.should be_a( Hash )
+			rval.should include( 'Brand.Brand', 'ImageSource.NbrOfSources' )
+
+			rval['Brand.Brand'].should == 'AXIS'
+			rval['ImageSource.NbrOfSources'].should be_an( Integer )
+		end
+
+		it "can fetch the 'view'-level parameters for the camera as a multi-level Hash" do
+			rval = @camera.params_hash
+
+			rval.should be_a( Hash )
+			rval.should include( 'Brand', 'ImageSource' )
+
+			rval['Brand']['Brand'].should == 'AXIS'
+			rval['ImageSource']['NbrOfSources'].should be_an( Integer )
 		end
 
 
@@ -176,7 +195,15 @@ describe Axis::Camera do
 				end
 			end
 
-			it "can fetch a bitmap image from the default camera at the default resolution"
+			it "can fetch a bitmap image from the default camera at the default resolution" do
+				pending "this returns an invalid HTTP response on my test camera" do
+					@camera.get_bitmap.should == 'a bitmap'
+				end
+			end
+
+			it "can fetch a JPEG image from the default camera with default options" do
+				@camera.get_jpeg[0,4].should == "\xff\xd8\xff\xe0" # JPEG magic
+			end
 
 		end
 

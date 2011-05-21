@@ -9,11 +9,15 @@ require 'trollop'
 opts = Trollop.options do
 	banner "#$0 [OPTIONS] HOSTNAME"
 
+	text 'Config'
 	opt :username, "The username to use when connecting.",
 		:default => Etc.getlogin
 	opt :password, "The password to use when connecting.",
 		:type => String
 	opt :debug, "Enabled debugging"
+
+	text 'Actions'
+	opt :dump_params, "Dump the camera's parameters."
 end
 
 camhost = ARGV.shift or abort "No camera IP/host specified."
@@ -25,6 +29,11 @@ cam = Axis::Camera.new( camhost )
 cam.username = opts.username || prompt.ask( "Username: " )
 cam.password = opts.password || prompt.ask( "Password: " ) {|q| q.echo = '*' }
 
-prompt.say( "Camera is running firmware: <%= color #{cam.firmware_version.dump}, :bold %>" )
+if opts.dump_params
+	prompt.say( "Camera parameters:" )
+	PP.pp( cam.params )
+else
+	prompt.say( "Camera is running firmware: <%= color #{cam.firmware_version.dump}, :bold %>" )
+end
 
 
